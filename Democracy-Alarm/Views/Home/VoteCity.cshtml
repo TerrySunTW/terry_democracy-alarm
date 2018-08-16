@@ -1,0 +1,16 @@
+﻿
+@{
+    Layout = "";
+}
+
+<div class="text-center">
+    <h4 class="first">Example: Send a form via ajax</h4>
+    <p>This is a short and simple demonstration how an ajax form can be used together with Lightcase. Just give it a try and fill in a nickname.<br><br></p>
+    <form id="ajax-form" name="ajax-form" action="/lightcase/view/send.php" method="post" data-rel="lightcase">
+        <ul class="input-list">
+            <li><input type="text" id="name" name="name" placeholder="Your nickname" value="" required></li>
+            <li><input type="submit" name="submit" class="button blue" value="Submit"></li>
+        </ul>
+    </form>
+</div>
+

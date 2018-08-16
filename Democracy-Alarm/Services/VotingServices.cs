@@ -12,12 +12,26 @@ namespace Democracy_Alarm.Services
         public List<CityVoting> GetCityVotes()
         {
             var _result = from Voting in _MyDB_Entities.KeyValue
-                          join vt in _MyDB_Entities.VotingRecords on
-                           new { X1 = Voting.Key } equals new { X1 = vt.VotingTarget }
-                          group vt by vt.VotingTarget into VotingResult
-                          select new CityVoting {  CityName = VotingResult.Key, Votes = VotingResult.Count() };
+                          where Voting.Key=="city"
+                          select new CityVoting {
+                              CityName = Voting.Value,
+                              Votes = (from CityVotingCount in _MyDB_Entities.VotingRecords
+                                       where CityVotingCount.VotingTarget==Voting.Key
+                                       select CityVotingCount
+                                       ).Count()
+                          };
 
             return _result.ToList();
+
+        }
+        public string[] GetCitys()
+        {
+            var _result = from Citys in _MyDB_Entities.KeyValue
+                          where Citys.Key == "city"
+                          orderby Citys.OrderID
+                          select Citys.Value;
+
+            return _result.ToArray();
 
         }
     }

@@ -7,7 +7,8 @@ namespace Democracy_Alarm.Models
 {
     public class VotingCityViewModel
     {
-        public List<CityVoting> Cities;
+        public List<CityVoting> CityVotes;
+        public string[] Cities;
     }
     public class CityVoting
     {

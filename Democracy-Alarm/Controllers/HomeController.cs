@@ -41,7 +41,8 @@ namespace Democracy_Alarm.Controllers
                 
                 }
             VotingServices _VotingServices = new VotingServices();
-            _VotingCityViewModel.Cities = _VotingServices.GetCityVotes();
+            _VotingCityViewModel.Cities = _VotingServices.GetCitys();
+            _VotingCityViewModel.CityVotes = _VotingServices.GetCityVotes();
             return View(_VotingCityViewModel);
         }
         /**
@@ -51,11 +52,26 @@ namespace Democracy_Alarm.Controllers
             return Content(Convert.ToInt32(IsNewLogin).ToString());
         }**/
 
-        public ActionResult Contact()
+        public ActionResult GetCityInfo()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+
+        public ActionResult GetPersonalHistory()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult VoteCity()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
     }
 }
