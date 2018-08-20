@@ -248,7 +248,6 @@
     <Content Include="Content\Images\presentation2.png" />
     <Content Include="Content\jquery-confirm.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\lightcase.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
@@ -293,9 +292,6 @@
     <Content Include="MyDB.edmx.diagram">
       <DependentUpon>MyDB.edmx</DependentUpon>
     </Content>
-    <Content Include="fonts\lightcase.eot" />
-    <Content Include="fonts\lightcase.ttf" />
-    <Content Include="fonts\lightcase.woff" />
     <None Include="Properties\PublishProfiles\Democracy-Alarm - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
