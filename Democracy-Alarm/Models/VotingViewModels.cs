@@ -9,6 +9,8 @@ namespace Democracy_Alarm.Models
     {
         public List<CityVoting> CityVotes;
         public string[] Cities;
+        public string LastVotingSeason;
+        public string ID;
     }
     public class CityVoting
     {

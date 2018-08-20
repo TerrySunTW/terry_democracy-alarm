@@ -26,7 +26,7 @@ namespace Democracy_Alarm
         }
     
         public virtual DbSet<KeyValue> KeyValue { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<VotingRecords> VotingRecords { get; set; }
     }
 }

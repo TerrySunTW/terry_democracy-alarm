@@ -14,35 +14,37 @@ namespace Democracy_Alarm.Controllers
         public ActionResult Index(UserModel UserModel)
         {
             VotingCityViewModel _VotingCityViewModel = new VotingCityViewModel();
-                if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
+            {
+                TempData["IsLogined"] = "1";
+            }
+            if (UserModel.LogingUserID != null)
+            {
+                UserServices _UserServices = new UserServices();
+                _UserServices.UpdateOrCreateUser(UserModel);
+                if (!User.Identity.IsAuthenticated)
                 {
-                    TempData["IsLogined"] = "1";
+                    Session.RemoveAll();
+
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+                        UserModel.LogingUserID,
+                        DateTime.Now,
+                        DateTime.Now.AddSeconds(10),
+                        false,
+                        UserModel.LoginType,
+                        FormsAuthentication.FormsCookiePath);
+
+                    string encTicket = FormsAuthentication.Encrypt(ticket);
+
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
                 }
-                if (UserModel.LogingUserID != null)
-                {
-                    UserServices _UserServices = new UserServices();
-                    _UserServices.UpdateOrCreateUser(UserModel);
-                    if (!User.Identity.IsAuthenticated)
-                    {
-                        Session.RemoveAll();
-
-                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
-                          UserModel.LogingUserID,
-                          DateTime.Now,
-                          DateTime.Now.AddSeconds(10),
-                          false,
-                          UserModel.LoginType,
-                          FormsAuthentication.FormsCookiePath);
-
-                        string encTicket = FormsAuthentication.Encrypt(ticket);
-
-                        Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
-                    }
                 
-                }
+            }
             VotingServices _VotingServices = new VotingServices();
             _VotingCityViewModel.Cities = _VotingServices.GetCitys();
             _VotingCityViewModel.CityVotes = _VotingServices.GetCityVotes();
+            _VotingCityViewModel.LastVotingSeason = _VotingServices.GetMemberLastVotingSeason(UserModel.LogingUserID);
+            //_VotingCityViewModel.ID = UserModel.LogingUserID;
             return View(_VotingCityViewModel);
         }
         /**
@@ -60,13 +62,6 @@ namespace Democracy_Alarm.Controllers
         }
 
         public ActionResult GetPersonalHistory()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult VoteCity()
         {
             ViewBag.Message = "Your contact page.";
 

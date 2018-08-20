@@ -20,5 +20,6 @@ namespace Democracy_Alarm
         public string VotingSeason { get; set; }
         public string VotingComment { get; set; }
         public System.DateTime Createtime { get; set; }
+        public bool IsDiscard { get; set; }
     }
 }

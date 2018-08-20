@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\VotingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,7 +226,7 @@
     <Compile Include="Services\UserServices.cs" />
     <Compile Include="Services\VotingServices.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="User.cs">
+    <Compile Include="Users.cs">
       <DependentUpon>MyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="VotingRecords.cs">
@@ -245,8 +246,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\presentation1.png" />
     <Content Include="Content\Images\presentation2.png" />
-    <Content Include="Content\lightcase.css" />
+    <Content Include="Content\jquery-confirm.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\lightcase.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
@@ -291,6 +293,9 @@
     <Content Include="MyDB.edmx.diagram">
       <DependentUpon>MyDB.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\lightcase.eot" />
+    <Content Include="fonts\lightcase.ttf" />
+    <Content Include="fonts\lightcase.woff" />
     <None Include="Properties\PublishProfiles\Democracy-Alarm - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -298,11 +303,11 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-confirm.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\lightcase.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -357,9 +362,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\GetCityInfo.cshtml" />
     <Content Include="Views\Home\GetPersonalHistory.cshtml" />
-    <Content Include="Views\Home\VoteCity.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Voting\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

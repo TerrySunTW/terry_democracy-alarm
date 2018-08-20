@@ -6,12 +6,14 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@Styles.Render("~/Content/css")
 <style>
     body, h1, h2, h3, h4, h5, h6 {
         font-family: "Raleway", sans-serif
     }
 </style>
 <script>
+    var UID;
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -37,12 +39,12 @@
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 //show personal history
-                $('#myModal').modal('show'); 
+                $('#myModal').modal('show');
             }
             else {
                 statusChangeCallback(response);
             }
-            
+
         });
     }
 
@@ -87,6 +89,7 @@
     function LoginProcessing() {
         FB.api('/me', function (response) {
             if (response) {
+                UID = response.id;
                 var posting = $.post("@Url.Action("index", "Home")", { LogingUserID: response.id, LoginType: "facebook", LoginUserName: response.name } );
                 posting.done(function (data) {
                     if ("@TempData["IsLogined"]"==="1") {
@@ -101,7 +104,10 @@
         spinner.removeAttribute("style");
         spinner.removeChild(spinner.childNodes[0]);
     }
-    FB.Event.subscribe('xfbml.render', finished_rendering);
+    if (typeof FB !== 'undefined') {
+        FB.Event.subscribe('xfbml.render', finished_rendering);
+    }
+    
 </script>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -190,7 +196,7 @@
     </div>
 
     <script>
-        
+
         // Script to open and close sidebar
         function w3_open() {
             document.getElementById("mySidebar").style.display = "block";
@@ -206,10 +212,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/lightcase")
     @RenderSection("scripts", required: false)
-    <script>
-        jQuery(document).ready(function ($) {
-            $('a[data-rel^=lightcase]').lightcase();
-        });
-    </script>
+   
 </body>
 </html>

@@ -11,7 +11,7 @@ namespace Democracy_Alarm.Services
         MyDB_Entities _MyDB_Entities = new MyDB_Entities();
         public void UpdateOrCreateUser(UserModel _UserModel)
         {
-            var DBUser = _MyDB_Entities.User.SingleOrDefault(p => p.UserID == _UserModel.LogingUserID && p.LoginType == _UserModel.LoginType);
+            var DBUser = _MyDB_Entities.Users.SingleOrDefault(p => p.UserID == _UserModel.LogingUserID && p.LoginType == _UserModel.LoginType);
 
             if(DBUser ==null)
             {
@@ -22,7 +22,7 @@ namespace Democracy_Alarm.Services
                         UserImageUrl = string.Format("http://graph.facebook.com/{0}/picture?type=square", _UserModel.LogingUserID);
                         break;
                 }
-                DBUser = new User()
+                DBUser = new Users()
                 {
                     UserID = _UserModel.LogingUserID,
                     LoginType = _UserModel.LoginType,
@@ -31,7 +31,7 @@ namespace Democracy_Alarm.Services
                     Createtime = DateTime.Now
                 };
                 //new item
-                _MyDB_Entities.User.Add(DBUser);
+                _MyDB_Entities.Users.Add(DBUser);
             }
             else
             {

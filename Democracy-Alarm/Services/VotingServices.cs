@@ -16,7 +16,7 @@ namespace Democracy_Alarm.Services
                           select new CityVoting {
                               CityName = Voting.Value,
                               Votes = (from CityVotingCount in _MyDB_Entities.VotingRecords
-                                       where CityVotingCount.VotingTarget==Voting.Key
+                                       where CityVotingCount.VotingTarget==Voting.Value
                                        select CityVotingCount
                                        ).Count()
                           };
@@ -32,7 +32,52 @@ namespace Democracy_Alarm.Services
                           select Citys.Value;
 
             return _result.ToArray();
-
         }
+        public String GetMemberLastVotingSeason(String UserID)
+        {
+            String LastVotingSeason = (from Season in _MyDB_Entities.KeyValue
+                                       where Season.Key== "season"
+                                       orderby Season.OrderID
+                                       select Season.Value).FirstOrDefault();
+            var UserInfo = (from User in _MyDB_Entities.Users
+                       where User.UserID == UserID
+                       select User).FirstOrDefault();
+
+            if(UserInfo != null)
+            {
+                LastVotingSeason = (from VotingRecord in _MyDB_Entities.VotingRecords
+                                    where VotingRecord.UserUID == UserInfo.UID
+                                    orderby VotingRecord.Createtime descending
+                                    select VotingRecord.VotingSeason).FirstOrDefault();
+            }
+            return LastVotingSeason;
+        }
+
+        public bool CreateNewVotingRecord(string UserID, string Target,string Season,string Comment,bool IsDiscard, out string Message)
+        {
+            Message = string.Empty;
+            bool ReturnVal = false;
+            var UserInfo = (from User in _MyDB_Entities.Users
+                            where User.UserID == UserID
+                            select User).FirstOrDefault();
+            VotingRecords _VotingRecord=new VotingRecords()
+            {
+                UserUID = UserInfo.UID,
+                VotingTarget = Target,
+                VotingSeason = Season,
+                VotingComment = Comment,
+                IsDiscard = IsDiscard,
+                Createtime = DateTime.Now
+            };
+            _MyDB_Entities.VotingRecords.Add(_VotingRecord);
+            
+            _MyDB_Entities.SaveChanges();
+            if (_VotingRecord.UID>0)
+            {
+                ReturnVal = true;
+            }
+            return ReturnVal;
+        }
+
     }
 }

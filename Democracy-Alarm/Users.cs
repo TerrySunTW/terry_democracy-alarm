@@ -12,7 +12,7 @@ namespace Democracy_Alarm
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Users
     {
         public int UID { get; set; }
         public string LoginType { get; set; }

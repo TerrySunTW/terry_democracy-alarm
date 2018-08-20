@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="0d5d3c91e84b46d789f3a8d0cf2e6f5d" Name="Diagram1">
         <EntityTypeShape EntityType="MyDB_Model.KeyValue" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MyDB_Model.User" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MyDB_Model.Users" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="MyDB_Model.VotingRecords" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
