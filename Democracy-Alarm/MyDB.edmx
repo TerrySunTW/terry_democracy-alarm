@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MyDB_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MyDB_Model.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="KeyValue">
           <Key>
             <PropertyRef Name="UID" />
@@ -19,10 +19,10 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoginType" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="UserID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LoginType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserImage" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="UserImage" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Createtime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="VotingRecords">
@@ -32,32 +32,28 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserUID" Type="int" Nullable="false" />
           <Property Name="VotingTarget" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="VotingSeason" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="VotingSeason" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="VotingComment" Type="nvarchar" MaxLength="120" Nullable="false" />
           <Property Name="Createtime" Type="datetime" Nullable="false" />
           <Property Name="IsDiscard" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="MyDB_ModelStoreContainer">
-          <EntitySet Name="KeyValue" EntityType="Self.KeyValue" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VotingRecords" EntityType="Self.VotingRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeyValue" EntityType="Self.KeyValue" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" />
+          <EntitySet Name="VotingRecords" EntityType="Self.VotingRecords" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyDB_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="MyDB_Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="KeyValue" EntityType="MyDB_Model.KeyValue" />
-          <EntitySet Name="Users" EntityType="MyDB_Model.Users" />
-          <EntitySet Name="VotingRecords" EntityType="MyDB_Model.VotingRecords" />
-        </EntityContainer>
         <EntityType Name="KeyValue">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -65,10 +61,10 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LoginType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserImage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LoginType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Createtime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="VotingRecords">
@@ -77,12 +73,17 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserUID" Type="Int32" Nullable="false" />
-          <Property Name="VotingTarget" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="VotingSeason" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="VotingComment" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="VotingTarget" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VotingSeason" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VotingComment" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Createtime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDiscard" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityContainer Name="MyDB_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KeyValue" EntityType="Self.KeyValue" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="VotingRecords" EntityType="Self.VotingRecords" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -92,35 +93,35 @@
           <EntitySetMapping Name="KeyValue">
             <EntityTypeMapping TypeName="MyDB_Model.KeyValue">
               <MappingFragment StoreEntitySet="KeyValue">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MyDB_Model.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Createtime" ColumnName="Createtime" />
-                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="LoginType" ColumnName="LoginType" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="LoginType" ColumnName="LoginType" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="Createtime" ColumnName="Createtime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VotingRecords">
             <EntityTypeMapping TypeName="MyDB_Model.VotingRecords">
               <MappingFragment StoreEntitySet="VotingRecords">
-                <ScalarProperty Name="IsDiscard" ColumnName="IsDiscard" />
-                <ScalarProperty Name="Createtime" ColumnName="Createtime" />
-                <ScalarProperty Name="VotingComment" ColumnName="VotingComment" />
-                <ScalarProperty Name="VotingSeason" ColumnName="VotingSeason" />
-                <ScalarProperty Name="VotingTarget" ColumnName="VotingTarget" />
-                <ScalarProperty Name="UserUID" ColumnName="UserUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="UserUID" ColumnName="UserUID" />
+                <ScalarProperty Name="VotingTarget" ColumnName="VotingTarget" />
+                <ScalarProperty Name="VotingSeason" ColumnName="VotingSeason" />
+                <ScalarProperty Name="VotingComment" ColumnName="VotingComment" />
+                <ScalarProperty Name="Createtime" ColumnName="Createtime" />
+                <ScalarProperty Name="IsDiscard" ColumnName="IsDiscard" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -140,7 +141,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
