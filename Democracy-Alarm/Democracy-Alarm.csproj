@@ -197,11 +197,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Democracy-Alarm.mdf" />
     <Content Include="App_Data\Democracy-Alarm.sdf" />
-    <Content Include="App_Data\Democracy-Alarm_log.ldf">
-      <DependentUpon>Democracy-Alarm.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
