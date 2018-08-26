@@ -78,6 +78,61 @@ namespace Democracy_Alarm.Services
             }
             return ReturnVal;
         }
+        public List<VotingResult> GetMemberVotingRecord(String UserID)
+        {
+            List<VotingResult> results = new List<VotingResult>();
+            var UserInfo = (from User in _MyDB_Entities.Users
+                            where User.UserID == UserID
+                            select User).FirstOrDefault();
+
+            if (UserInfo != null)
+            {
+
+                results = (from VotingRecord in _MyDB_Entities.VotingRecords
+                           join User in _MyDB_Entities.Users on VotingRecord.UserUID equals User.UID
+                           where VotingRecord.UserUID == UserInfo.UID
+                            orderby VotingRecord.Createtime descending
+                           select new VotingResult()
+                           {
+                               UserName = User.UserName,
+                               UserImage = User.UserImage,
+                               VotingComment = VotingRecord.VotingComment,
+                               VotingTarget = VotingRecord.VotingTarget,
+                               VotingTime = VotingRecord.Createtime,
+                               VotingSeason = VotingRecord.VotingSeason,
+                               IsDiscard = VotingRecord.IsDiscard
+                           }).ToList();
+
+            }
+            return results;
+        }
+        public List<VotingResult> GetCityVotingRecords(String CityName)
+        {
+            List<VotingResult> results = new List<VotingResult>();
+            var City = (from Citys in _MyDB_Entities.KeyValue
+                        where Citys.Key == "city" && Citys.Value== CityName
+                        select Citys).FirstOrDefault();
+
+            if (City != null)
+            {
+
+                results = (from VotingRecord in _MyDB_Entities.VotingRecords
+                           join User in _MyDB_Entities.Users on VotingRecord.UserUID equals User.UID
+                           where VotingRecord.VotingTarget == City.Value
+                           orderby VotingRecord.Createtime descending
+                           select new VotingResult()
+                           {
+                               UserName = User.UserName,
+                               UserImage = User.UserImage,
+                               VotingComment = VotingRecord.VotingComment,
+                               VotingTarget= VotingRecord.VotingTarget,
+                               VotingTime= VotingRecord.Createtime,
+                               VotingSeason= VotingRecord.VotingSeason
+                           }).ToList();
+
+            }
+            return results;
+        }
 
     }
 }

@@ -1,0 +1,25 @@
+﻿@model Democracy_Alarm.Models.CityVotingViewModel
+@{
+    ViewBag.Title = "GetCityVoting";
+}
+
+<table class="table table-bordered table-condensed table-striped">
+    <tr>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Season</th>
+        <th>Comment</th>
+    </tr>
+    @foreach (var item in Model.VoteResult)
+    {
+    <tr>
+        <td><img src="@item.UserImage" alt="@item.UserName" /></td>
+        <td>@item.UserName</td>
+        <td>@item.VotingSeason</td>
+        <td>@item.VotingComment</td>
+    </tr>
+    }
+
+
+</table>
+

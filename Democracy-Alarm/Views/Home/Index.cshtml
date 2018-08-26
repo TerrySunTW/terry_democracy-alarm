@@ -33,13 +33,19 @@
                 CountNumber++;
                 <div class="w3-third w3-container w3-margin-bottom">
                     <div class="w3-container w3-white">
-                        <p><b>@element.CityName</b></p>
-                        <a class="button line-blue" data-rel="lightcase:myCollection" data="@element.CityName" voting_index="@CountNumber" href="#">
+                        <p>
+                            <b>
+                                <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
+                                    @element.CityName
+                                </a>
+                            </b>
+                        </p>
+                        <a class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
                             <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
-                            </a>
+                        </a>
 
-                            <p>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
-</div>
+                        <p>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
+                    </div>
                 </div>
             }
         </div>
@@ -100,7 +106,7 @@
                 setup_voting();
             });
             function setup_voting() {
-                $('a[data-rel^=lightcase]').on('click', function () {
+                $('a[data-rel^=voting]').on('click', function () {
                     var CityName = this.attributes['data'].value;
                     SelectedIndex = this.attributes['voting_index'].value;
                     $.confirm({
@@ -133,6 +139,18 @@
                         }
                     });
                 });
+                $('a[data-rel^=CityResult]').on('click', function () {
+                    var CityName = this.attributes['data'].value;
+                    $.dialog({
+                        title: CityName + '記錄',
+                        content: 'url:@Url.Action("GetCityVoting", "Voting", null)?City=' + CityName,
+                        animation: 'scale',
+                        columnClass: 'medium',
+                        closeAnimation: 'scale',
+                        backgroundDismiss: true,
+                    });
+                });
+                
             }
             function SubmitVoting(IsDiscard) {
                 var VotingCity = $("#VotingCity").val();

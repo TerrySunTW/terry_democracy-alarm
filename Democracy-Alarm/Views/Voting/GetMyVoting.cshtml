@@ -1,0 +1,23 @@
+﻿@model Democracy_Alarm.Models.PersonalVotingViewModel
+@{
+    ViewBag.Title = "GetPersonalVoting";
+}
+<table class="table table-bordered table-condensed table-striped">
+    <tr>
+        <th>Status</th>
+        <th>Name</th>
+        <th>Season</th>
+        <th>Comment</th>
+    </tr>
+    @foreach (var item in Model.VoteResult)
+    {
+        <tr>
+            <td>@(item.IsDiscard?"無效": "有效")</td>
+            <td>@item.UserName</td>
+            <td>@item.VotingSeason</td>
+            <td>@item.VotingComment</td>
+        </tr>
+    }
+
+
+</table>

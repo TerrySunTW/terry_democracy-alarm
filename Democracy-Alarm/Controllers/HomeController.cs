@@ -54,19 +54,5 @@ namespace Democracy_Alarm.Controllers
             return Content(Convert.ToInt32(IsNewLogin).ToString());
         }**/
 
-        public ActionResult GetCityInfo()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult GetPersonalHistory()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
     }
 }
