@@ -60,40 +60,83 @@
 <div class="w3-container w3-padding-large" style="margin-bottom:32px">
     <h1><b>理念</b></h1>
     <p>
-        馬丁．路德．金：在社會轉型期，最大的悲劇不是
-        壞人的囂張，而是好人的過度沉默。
+        馬丁．路德．金：在社會轉型期，最大的悲劇不是壞人的囂張，
+        而是好人的過度沉默。
     </p><p>
-        現在，民主政治中，選民唯一的武器是一張選票
-        ，這張選票的有效期限只有選舉那一天。其他的
-        日子，選民只能沉默。所以，現在的狀況如圖
-        一。
+        現在的民主制度，選民唯一有效的武器是一張選票。這張選票
+        的有效期限只有選舉那一天。其他的日子，選民只能沉默，默默
+        的看著政客造假抹黑，攻擊為人們做事的政治家。然後選前一
+        波波的紅包黑函攻勢下，忘了政治家前幾年的貢獻。所以現在
+        民主選舉的狀況如圖一。
     </p>
-    如果有一個政治家每天努力的做事，我們如何
-    持續支持他？
+    政治家每天努力的做事，除了選舉那一天，忙碌的公民如何出
+    聲支持他？
     </p><p>
-        一張選票用四年，一季一次，表達與承諾對政治
-        家的支持。目標如圖二。
+        一張選票用四年，一季一次，表達與承諾對政治家的支持。作法
+        如圖二。
+    </p>
+    <p>
+        我們的目標如圖三。不要讓政治家辛苦做三年半，心裡卻一直
+        不安，怕選前的紅包黑函攻勢下，選民背叛自己。每一季花三分
+        鐘支持辛苦工作的政治家，讓他們心安。有公民的一路相隨，會
+        有越來越多的政治家勇於做事。
     </p>
     <p><img src="~/Content/Images/presentation1.png" /></p>
     <p><img src="~/Content/Images/presentation2.png" /></p>
+    <p><img src="~/Content/Images/presentation3.png" /></p>
     <hr>
+</div>
+<div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h1><b>投季票的日子</b></h1>
 
+    <p>
+        一年訂這四個日子，選民表達與承諾對政治家的支持：
+    </p>
+    <p>
+        2月4日，立春農民節，農民生產糧食。
+
+    </p>
+    <p>
+        5月1日，國際勞工節，勞工生產日常用品。
+
+    </p>
+    <p>
+        8月12日，國際青年節，青年是即時的戰力。
+
+    </p>
+    <p>
+        10月31日，萬聖夜，兒童的歡樂節日，兒童是未來的主力。
+
+    </p>
+
+    <hr>
+</div>
     <div class="w3-row-padding w3-padding-16" id="news">
 
     </div>
     <h1><b>公告</b></h1>
     <!-- Progress bars / Skills -->
-    <p>公告11</p>
+    <p>封測階段</p>
     <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-padding">ADFASD ADFADFAS  ADFASDFAS ADFASDF</div>
+        <div class="w3-container w3-dark-grey w3-padding">
+            2108選舉前，封測階段，FB or Google。
+        </div>
     </div>
-    <p>公告22</p>
+    <p>手機認證</p>
     <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-padding">ADFASD ADFADFAS  ADFASDFAS ADFASDF</div>
+        <div class="w3-container w3-dark-grey w3-padding">2108選舉後，大規模使用，手機認證。</div>
     </div>
-    <p>公告33</p>
+    <p>加身份證認證</p>
     <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-padding">ADFASD ADFADFAS  ADFASDFAS ADFASDF</div>
+        <div class="w3-container w3-dark-grey w3-padding">
+            系統穩定後，再提高可靠度，加身份證認證。
+        </div>
+    </div>
+    <p>區塊鍊防資料變更</p>
+    <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-padding">
+            得到多數人的認同後，以區塊鍊防資料變更。
+        </div>
     </div>
 
     <hr>
@@ -101,6 +144,8 @@
     @section scripts {
         <script>
             var LastVotingSeason = '@Model.LastVotingSeason';
+            var CurrentVotingSeason = '@Model.CurrentVotingSeason';
+            var NextVotingSeason = '@Model.NextVotingSeason';
             var SelectedIndex = 0;
             jQuery(document).ready(function ($) {
                 setup_voting();
@@ -114,7 +159,7 @@
                         content: '' +
                             '<form action="" class="formName">' +
                             '<div class="form-group">' +
-                            '<label>投給' + CityName + '-' + LastVotingSeason+'</label>' +
+                            '<label>投給' + CityName + '-' + NextVotingSeason+'</label>' +
                             '<input type="hidden" id="VotingCity" value="' + CityName+'">' +
                             '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧..." class="name form-control" maxlength="120" />' +
                             '</div>' +
@@ -150,12 +195,12 @@
                         backgroundDismiss: true,
                     });
                 });
-                
+
             }
             function SubmitVoting(IsDiscard) {
                 var VotingCity = $("#VotingCity").val();
                 var VotingReason = $("#VotingReason").val();
-                
+
                 //LastVotingSeason
                 //UID
                 $.post("@Url.Action("SubmitNewVoting", "Voting", null, Request.Url.Scheme)", {

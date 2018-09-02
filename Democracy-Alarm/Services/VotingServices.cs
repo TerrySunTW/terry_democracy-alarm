@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Democracy_Alarm.Services
@@ -35,10 +36,12 @@ namespace Democracy_Alarm.Services
         }
         public String GetMemberLastVotingSeason(String UserID)
         {
+            //get first season
             String LastVotingSeason = (from Season in _MyDB_Entities.KeyValue
                                        where Season.Key== "season"
                                        orderby Season.OrderID
                                        select Season.Value).FirstOrDefault();
+            //get user votingrecord
             var UserInfo = (from User in _MyDB_Entities.Users
                        where User.UserID == UserID
                        select User).FirstOrDefault();
@@ -52,8 +55,59 @@ namespace Democracy_Alarm.Services
             }
             return LastVotingSeason;
         }
+        public String GetCurrentVotingSeason()
+        {
+            String SeasonString = "Q1";
+            if ((DateTime.Now.Month >= 10 && DateTime.Now.Day >= 31) ||
+                (DateTime.Now.Month <= 2 && DateTime.Now.Day < 4)
+                )
+            {
+                SeasonString = "Q4";
+            }
+            else if ((DateTime.Now.Month >= 2 && DateTime.Now.Day >= 4) ||
+                (DateTime.Now.Month <= 8 && DateTime.Now.Day < 12)
+                )
+            {
+                SeasonString = "Q1";
+            }
+            else if ((DateTime.Now.Month >= 5 && DateTime.Now.Day >= 1) ||
+                (DateTime.Now.Month <= 8 && DateTime.Now.Day < 12)
+                )
+            {
+                SeasonString = "Q2";
+            }
+            else if ((DateTime.Now.Month >= 8 && DateTime.Now.Day >= 12) ||
+               (DateTime.Now.Month <= 10 && DateTime.Now.Day < 31)
+               )
+            {
+                SeasonString = "Q3";
+            }
 
-        public bool CreateNewVotingRecord(string UserID, string Target,string Season,string Comment,bool IsDiscard, out string Message)
+            return DateTime.Now.Year.ToString()+SeasonString;
+        }
+        public string GetnNextVotingSeason(String LastVotingSeason)
+        {
+            String result = "2018Q1";
+            Regex regex = new Regex("([0-9]{0,4})Q([1-4])", RegexOptions.IgnoreCase);
+            int LastYear = 2018;
+            int LastSeason = 1;
+            int.TryParse(regex.Matches(LastVotingSeason)[0].Groups[1].Value, out LastYear);
+            int.TryParse(regex.Matches(LastVotingSeason)[0].Groups[2].Value, out LastSeason);
+            
+            LastSeason++;
+            if (LastSeason>4)
+            {
+                LastSeason = 1;
+                LastYear++;
+            }
+            if(LastYear>0&& LastSeason>0)
+            {
+                result = string.Format("{0}Q{1}", LastYear.ToString(), LastSeason.ToString());
+            }
+            return result;
+        }
+
+            public bool CreateNewVotingRecord(string UserID, string Target,string Season,string Comment,bool IsDiscard, out string Message)
         {
             Message = string.Empty;
             bool ReturnVal = false;
