@@ -50,7 +50,7 @@ namespace Democracy_Alarm.Services
             {
                 LastVotingSeason = (from VotingRecord in _MyDB_Entities.VotingRecords
                                     where VotingRecord.UserUID == UserInfo.UID
-                                    orderby VotingRecord.Createtime descending
+                                    orderby VotingRecord.UID descending
                                     select VotingRecord.VotingSeason).FirstOrDefault();
             }
             return LastVotingSeason;
@@ -88,12 +88,9 @@ namespace Democracy_Alarm.Services
         public string GetnNextVotingSeason(String LastVotingSeason)
         {
             String result = "2018Q1";
-            Regex regex = new Regex("([0-9]{0,4})Q([1-4])", RegexOptions.IgnoreCase);
             int LastYear = 2018;
             int LastSeason = 1;
-            int.TryParse(regex.Matches(LastVotingSeason)[0].Groups[1].Value, out LastYear);
-            int.TryParse(regex.Matches(LastVotingSeason)[0].Groups[2].Value, out LastSeason);
-            
+            GetVotingYearSeasonFromString(LastVotingSeason, out LastYear, out LastSeason);
             LastSeason++;
             if (LastSeason>4)
             {
@@ -106,8 +103,16 @@ namespace Democracy_Alarm.Services
             }
             return result;
         }
+        public void GetVotingYearSeasonFromString(String SourceVotingSeason, out int VotingYear,out int VotingSeason)
+        {
+            Regex regex = new Regex("([0-9]{0,4})Q([1-4])", RegexOptions.IgnoreCase);
+            VotingYear = 2018;
+            VotingSeason = 1;
+            int.TryParse(regex.Matches(SourceVotingSeason)[0].Groups[1].Value, out VotingYear);
+            int.TryParse(regex.Matches(SourceVotingSeason)[0].Groups[2].Value, out VotingSeason);
+        }
 
-            public bool CreateNewVotingRecord(string UserID, string Target,string Season,string Comment,bool IsDiscard, out string Message)
+        public bool CreateNewVotingRecord(string UserID, string Target,string Season,string Comment,bool IsDiscard, out string Message)
         {
             Message = string.Empty;
             bool ReturnVal = false;

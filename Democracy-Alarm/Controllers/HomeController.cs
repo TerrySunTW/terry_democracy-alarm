@@ -14,10 +14,6 @@ namespace Democracy_Alarm.Controllers
         public ActionResult Index(UserModel UserModel)
         {
             VotingCityViewModel _VotingCityViewModel = new VotingCityViewModel();
-            if (User.Identity.IsAuthenticated)
-            {
-                TempData["IsLogined"] = "1";
-            }
             if (UserModel.LogingUserID != null)
             {
                 UserServices _UserServices = new UserServices();
@@ -45,7 +41,10 @@ namespace Democracy_Alarm.Controllers
             _VotingCityViewModel.CityVotes = _VotingServices.GetCityVotes();
             _VotingCityViewModel.LastVotingSeason = _VotingServices.GetMemberLastVotingSeason(UserModel.LogingUserID);
             _VotingCityViewModel.CurrentVotingSeason = _VotingServices.GetCurrentVotingSeason();
-            _VotingCityViewModel.NextVotingSeason = _VotingServices.GetnNextVotingSeason(_VotingCityViewModel.LastVotingSeason);
+            _VotingCityViewModel.NextFullVotingSeason = _VotingServices.GetnNextVotingSeason(_VotingCityViewModel.LastVotingSeason);
+            _VotingServices.GetVotingYearSeasonFromString(_VotingCityViewModel.NextFullVotingSeason,
+                out _VotingCityViewModel.NextVotingYear,
+                out _VotingCityViewModel.NextVotingSeason);
             //_VotingCityViewModel.ID = UserModel.LogingUserID;
             return View(_VotingCityViewModel);
         }

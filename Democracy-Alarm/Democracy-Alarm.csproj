@@ -219,6 +219,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\presentation1.png" />
     <Content Include="Content\Images\presentation2.png" />
+    <Content Include="Content\Images\presentation3.png" />
     <Content Include="Content\jquery-confirm.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

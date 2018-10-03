@@ -145,7 +145,9 @@
         <script>
             var LastVotingSeason = '@Model.LastVotingSeason';
             var CurrentVotingSeason = '@Model.CurrentVotingSeason';
-            var NextVotingSeason = '@Model.NextVotingSeason';
+            var NextFullVotingSeason = '@Model.NextFullVotingSeason';
+            var NextVotingYear = @Model.NextVotingYear;
+            var NextVotingSeason = @Model.NextVotingSeason;
             var SelectedIndex = 0;
             jQuery(document).ready(function ($) {
                 setup_voting();
@@ -159,7 +161,7 @@
                         content: '' +
                             '<form action="" class="formName">' +
                             '<div class="form-group">' +
-                            '<label>投給' + CityName + '-' + NextVotingSeason+'</label>' +
+                            '<label>投給' + CityName + '-' + NextFullVotingSeason+'</label>' +
                             '<input type="hidden" id="VotingCity" value="' + CityName+'">' +
                             '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧..." class="name form-control" maxlength="120" />' +
                             '</div>' +
@@ -206,7 +208,7 @@
                 $.post("@Url.Action("SubmitNewVoting", "Voting", null, Request.Url.Scheme)", {
                     UserID: UID,
                     Target: $("#VotingCity").val(),
-                    Season: LastVotingSeason,
+                    Season: NextFullVotingSeason,
                     Comment: $("#VotingReason").val(),
                     IsDiscard: IsDiscard
                 }).done(function (data) {
@@ -215,6 +217,7 @@
                         if (this.data.indexOf("IsDiscard=false") > 0) {
                             $("#VotingCount_" + SelectedIndex).html(parseInt($("#VotingCount_" + SelectedIndex).text()) + 1).css("color","green");
                         }
+                        AddVotingSeason();
                     }
                     else {
                         $.alert({
@@ -227,7 +230,14 @@
 
                 });
             }
-
+            function AddVotingSeason() {
+                NextVotingSeason++;
+                if (NextVotingSeason > 4) {
+                    NextVotingSeason=1
+                    NextVotingYear++;
+                }
+                NextFullVotingSeason = NextVotingYear + 'Q' + NextVotingSeason;
+            }
         </script>
 
     }
