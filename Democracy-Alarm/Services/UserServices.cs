@@ -9,6 +9,21 @@ namespace Democracy_Alarm.Services
     public class UserServices
     {
         MyDB_Entities _MyDB_Entities = new MyDB_Entities();
+        public Users GetUserObject(string UserID)
+        {
+            Users DBUser = _MyDB_Entities.Users.SingleOrDefault(p => p.UserID == UserID);
+            return DBUser;
+        }
+        public string GetUserLocation(string UserID)
+        {
+            string Location = string.Empty;
+            Users DBUser = _MyDB_Entities.Users.SingleOrDefault(p => p.UserID == UserID);
+            if(DBUser!=null)
+            {
+                Location = DBUser.UserLocation;
+            }
+            return Location;
+        }
         public void UpdateOrCreateUser(UserModel _UserModel)
         {
             var DBUser = _MyDB_Entities.Users.SingleOrDefault(p => p.UserID == _UserModel.LogingUserID && p.LoginType == _UserModel.LoginType);

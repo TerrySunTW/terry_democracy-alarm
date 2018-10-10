@@ -11,6 +11,7 @@ namespace Democracy_Alarm.Controllers
     public class VotingController : Controller
     {
         VotingServices _VotingServices = new VotingServices();
+        UserServices _UserServices = new UserServices();
         // GET: Voting
         public ActionResult SubmitNewVoting(string UserID, string Target, string Season, string Comment, bool IsDiscard)
         {
@@ -36,6 +37,5 @@ namespace Democracy_Alarm.Controllers
             _PersonalVotingViewModel.VoteResult = _VotingServices.GetMemberVotingRecord(UserID);
             return PartialView(_PersonalVotingViewModel);
         }
-
     }
 }

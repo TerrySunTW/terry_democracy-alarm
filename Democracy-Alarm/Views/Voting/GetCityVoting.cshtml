@@ -5,15 +5,15 @@
 
 <table class="table table-bordered table-condensed table-striped">
     <tr>
-        <th>Icon</th>
-        <th>Name</th>
-        <th>Season</th>
-        <th>Comment</th>
+        <th>ID</th>
+        <th>時間</th>
+        <th>
+            支持原因
+        </th>
     </tr>
     @foreach (var item in Model.VoteResult)
     {
     <tr>
-        <td><img src="@item.UserImage" alt="@item.UserName" /></td>
         <td>@item.UserName</td>
         <td>@item.VotingSeason</td>
         <td>@item.VotingComment</td>

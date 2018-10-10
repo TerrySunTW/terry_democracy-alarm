@@ -20,5 +20,6 @@ namespace Democracy_Alarm
         public string UserName { get; set; }
         public string UserImage { get; set; }
         public System.DateTime Createtime { get; set; }
+        public string UserLocation { get; set; }
     }
 }

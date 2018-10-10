@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\VotingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,6 +221,7 @@
     <Content Include="Content\Images\presentation1.png" />
     <Content Include="Content\Images\presentation2.png" />
     <Content Include="Content\Images\presentation3.png" />
+    <Content Include="Content\Images\presentation4.png" />
     <Content Include="Content\jquery-confirm.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -237,6 +239,7 @@
       <DependentUpon>MyDB.edmx</DependentUpon>
       <LastGenOutput>MyDB.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -351,7 +354,9 @@
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Test\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

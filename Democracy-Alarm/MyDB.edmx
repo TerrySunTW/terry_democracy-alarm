@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyDB_Model.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyDB_Model.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="KeyValue">
           <Key>
             <PropertyRef Name="UID" />
@@ -24,6 +24,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserImage" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Createtime" Type="datetime" Nullable="false" />
+          <Property Name="UserLocation" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VotingRecords">
           <Key>
@@ -42,8 +43,7 @@
           <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" />
           <EntitySet Name="VotingRecords" EntityType="Self.VotingRecords" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyDB_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -66,6 +66,7 @@
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Createtime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="VotingRecords">
           <Key>
@@ -103,6 +104,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MyDB_Model.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserLocation" ColumnName="UserLocation" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="LoginType" ColumnName="LoginType" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -141,7 +143,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

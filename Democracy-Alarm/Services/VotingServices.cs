@@ -108,8 +108,11 @@ namespace Democracy_Alarm.Services
             Regex regex = new Regex("([0-9]{0,4})Q([1-4])", RegexOptions.IgnoreCase);
             VotingYear = 2018;
             VotingSeason = 1;
-            int.TryParse(regex.Matches(SourceVotingSeason)[0].Groups[1].Value, out VotingYear);
-            int.TryParse(regex.Matches(SourceVotingSeason)[0].Groups[2].Value, out VotingSeason);
+            if(!string.IsNullOrEmpty(SourceVotingSeason))
+            {
+                int.TryParse(regex.Matches(SourceVotingSeason)[0].Groups[1].Value, out VotingYear);
+                int.TryParse(regex.Matches(SourceVotingSeason)[0].Groups[2].Value, out VotingSeason);
+            }
         }
 
         public bool CreateNewVotingRecord(string UserID, string Target,string Season,string Comment,bool IsDiscard, out string Message)
@@ -119,21 +122,24 @@ namespace Democracy_Alarm.Services
             var UserInfo = (from User in _MyDB_Entities.Users
                             where User.UserID == UserID
                             select User).FirstOrDefault();
-            VotingRecords _VotingRecord=new VotingRecords()
+            if(UserInfo!=null)
             {
-                UserUID = UserInfo.UID,
-                VotingTarget = Target,
-                VotingSeason = Season,
-                VotingComment = Comment,
-                IsDiscard = IsDiscard,
-                Createtime = DateTime.Now
-            };
-            _MyDB_Entities.VotingRecords.Add(_VotingRecord);
-            
-            _MyDB_Entities.SaveChanges();
-            if (_VotingRecord.UID>0)
-            {
-                ReturnVal = true;
+                VotingRecords _VotingRecord = new VotingRecords()
+                {
+                    UserUID = UserInfo.UID,
+                    VotingTarget = Target,
+                    VotingSeason = Season,
+                    VotingComment = Comment,
+                    IsDiscard = IsDiscard,
+                    Createtime = DateTime.Now
+                };
+                _MyDB_Entities.VotingRecords.Add(_VotingRecord);
+
+                _MyDB_Entities.SaveChanges();
+                if (_VotingRecord.UID > 0)
+                {
+                    ReturnVal = true;
+                }
             }
             return ReturnVal;
         }
@@ -191,6 +197,20 @@ namespace Democracy_Alarm.Services
 
             }
             return results;
+        }
+        public void RemoveMemberVotingRecord(String UserID)
+        {
+            List<VotingResult> results = new List<VotingResult>();
+            var UserInfo = (from User in _MyDB_Entities.Users
+                            where User.UserID == UserID
+                            select User).FirstOrDefault();
+
+            if (UserInfo != null)
+            {
+                var _VotingRecords = _MyDB_Entities.VotingRecords.Where(p => p.UserUID == UserInfo.UID).ToList();
+                _MyDB_Entities.VotingRecords.RemoveRange(_VotingRecords);
+                _MyDB_Entities.SaveChanges();
+            }
         }
 
     }
