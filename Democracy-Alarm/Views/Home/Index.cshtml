@@ -197,11 +197,6 @@
 
 @section scripts {
     <script>
-            var LastVotingSeason = '@Model.LastVotingSeason';
-            var CurrentVotingSeason = '@Model.CurrentVotingSeason';
-            var NextFullVotingSeason = '@Model.NextFullVotingSeason';
-            var NextVotingYear = @Model.NextVotingYear;
-            var NextVotingSeason = @Model.NextVotingSeason;
             var SelectedIndex = 0;
             jQuery(document).ready(function ($) {
                 setup_voting();
@@ -256,7 +251,19 @@
             function SubmitVoting(IsDiscard) {
                 var VotingCity = $("#VotingCity").val();
                 var VotingReason = $("#VotingReason").val();
-
+                debugger;
+                if (
+                    ((CurrentVotingSeason < NextVotingSeason) && (CurrentVotingYear == NextVotingYear)) ||
+                    CurrentVotingYear < NextVotingYear) {
+                    $.alert({
+                        title: 'Error',
+                        icon: 'fa fa-warning',
+                        type: 'red',
+                        content: '已沒有多餘票可用，請等下一季再行投票',
+                    });
+                    return;
+                }
+                //add condition
                 //LastVotingSeason
                 //UID
                 $.post("@Url.Action("SubmitNewVoting", "Voting", null, Request.Url.Scheme)", {

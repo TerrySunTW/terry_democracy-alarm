@@ -11,9 +11,11 @@ namespace Democracy_Alarm.Models
         public string[] Cities;
         public Dictionary<string,string> MayorMapping;
         public string LastVotingSeason;
-        public string CurrentVotingSeason;
+        public int CurrentVotingYear;
+        public int CurrentVotingSeason;
         public int NextVotingYear;
         public int NextVotingSeason;
+        
         public string NextFullVotingSeason;
         public string ID;
     }
@@ -40,6 +42,15 @@ namespace Democracy_Alarm.Models
         public string VotingComment { get; set; }
         public bool IsDiscard { get; set; }
         public DateTime VotingTime { get; set; }
+    }
+    public class UserVotingInfo
+    {
+        public string LastVotingSeason { get; set; }
+        public string NextFullVotingSeason { get; set; }
+        public int CurrentVotingYear { get; set; }
+        public int CurrentVotingSeason { get; set; }
+        public int NextVotingYear { get; set; }
+        public int NextVotingSeason { get; set; }
     }
 
 }

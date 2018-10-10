@@ -15,6 +15,12 @@
 <script>
     var UID;
     var MyCity = "台北市";
+    var LastVotingSeason;
+    var CurrentVotingSeason;
+    var CurrentVotingYear;
+    var NextFullVotingSeason;
+    var NextVotingYear;
+    var NextVotingSeason;
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -38,7 +44,7 @@
     function checkLoginState() {
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
-                //show personal history
+                //show personal historyhttp
                 $('#myModal').modal('show');
             }
             else {
@@ -49,7 +55,7 @@
     }
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '516183938824339',//official:225993038075570 testing:516183938824339
+            appId: '225993038075570',//official:225993038075570 testing:516183938824339
             cookie: true,  // enable cookies to allow the server to access
             // the session
             xfbml: true,  // parse social plugins on this page
@@ -97,6 +103,16 @@
                 $.post("@Url.Action("GetMyLocation", "User")", { UserID: UID } )
                     .done(function (Location) {
                         UpdateMyLocation(Location);
+                    });
+
+                $.post("@Url.Action("GetVotingInfo", "User")", { UserID: UID } )
+                    .done(function (data) {
+                        LastVotingSeason = data.LastVotingSeason;
+                        NextFullVotingSeason = data.NextFullVotingSeason;
+                        CurrentVotingSeason = data.CurrentVotingSeason;
+                        CurrentVotingYear = data.CurrentVotingYear;
+                        NextVotingYear = data.NextVotingYear;
+                        NextVotingSeason = data.NextVotingSeason;
                     });
             }
         });

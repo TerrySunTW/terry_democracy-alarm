@@ -40,12 +40,6 @@ namespace Democracy_Alarm.Controllers
             _VotingCityViewModel.Cities = _VotingServices.GetCitys();
             _VotingCityViewModel.MayorMapping = _VotingServices.GetMayorMapping();
             _VotingCityViewModel.CityVotes = _VotingServices.GetCityVotes();
-            _VotingCityViewModel.LastVotingSeason = _VotingServices.GetMemberLastVotingSeason(UserModel.LogingUserID);
-            _VotingCityViewModel.CurrentVotingSeason = _VotingServices.GetCurrentVotingSeason();
-            _VotingCityViewModel.NextFullVotingSeason = _VotingServices.GetnNextVotingSeason(_VotingCityViewModel.LastVotingSeason);
-            _VotingServices.GetVotingYearSeasonFromString(_VotingCityViewModel.NextFullVotingSeason,
-                out _VotingCityViewModel.NextVotingYear,
-                out _VotingCityViewModel.NextVotingSeason);
             //_VotingCityViewModel.ID = UserModel.LogingUserID;
             return View(_VotingCityViewModel);
         }

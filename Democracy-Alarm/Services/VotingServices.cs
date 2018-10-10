@@ -78,26 +78,26 @@ namespace Democracy_Alarm.Services
         public String GetCurrentVotingSeason()
         {
             String SeasonString = "Q1";
-            if ((DateTime.Now.Month >= 10 && DateTime.Now.Day >= 31) ||
-                (DateTime.Now.Month <= 2 && DateTime.Now.Day < 4)
+            if ((DateTime.Now.Month > 11 || (DateTime.Now.Month == 11 && DateTime.Now.Day >= 15)) &&
+                (DateTime.Now.Month < 2 || (DateTime.Now.Month ==2 && DateTime.Now.Day < 15))
                 )
             {
                 SeasonString = "Q4";
             }
-            else if ((DateTime.Now.Month >= 2 && DateTime.Now.Day >= 4) ||
-                (DateTime.Now.Month <= 8 && DateTime.Now.Day < 12)
+            else if ((DateTime.Now.Month > 2 || (DateTime.Now.Month == 2 && DateTime.Now.Day >= 15)) &&
+                (DateTime.Now.Month < 5 || (DateTime.Now.Month == 5 && DateTime.Now.Day < 15))
                 )
             {
                 SeasonString = "Q1";
             }
-            else if ((DateTime.Now.Month >= 5 && DateTime.Now.Day >= 1) ||
-                (DateTime.Now.Month <= 8 && DateTime.Now.Day < 12)
+            else if ((DateTime.Now.Month > 5 || (DateTime.Now.Month == 5 && DateTime.Now.Day >= 15)) &&
+                (DateTime.Now.Month < 8 || (DateTime.Now.Month == 8 && DateTime.Now.Day < 15))
                 )
             {
                 SeasonString = "Q2";
             }
-            else if ((DateTime.Now.Month >= 8 && DateTime.Now.Day >= 12) ||
-               (DateTime.Now.Month <= 10 && DateTime.Now.Day < 31)
+            else if ((DateTime.Now.Month > 8 || (DateTime.Now.Month == 8 && DateTime.Now.Day >= 15)) &&
+               (DateTime.Now.Month < 11 || (DateTime.Now.Month == 11 && DateTime.Now.Day < 15))
                )
             {
                 SeasonString = "Q3";
