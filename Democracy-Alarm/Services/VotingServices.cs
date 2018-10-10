@@ -34,6 +34,26 @@ namespace Democracy_Alarm.Services
 
             return _result.ToArray();
         }
+        public string[] GetMayors()
+        {
+            var _result = from Citys in _MyDB_Entities.KeyValue
+                          where Citys.Key == "mayor"
+                          orderby Citys.OrderID
+                          select Citys.Value;
+
+            return _result.ToArray();
+        }
+        public Dictionary<string,string> GetMayorMapping()
+        {
+            var Citys = GetCitys();
+            var Mayors = GetMayors();
+            Dictionary<string, string> MayorMapping = new Dictionary<string, string>();
+            for (int i = 0; i < Citys.Length; i++)
+            {
+                MayorMapping.Add(Citys[i], Mayors[i]);
+            }
+            return MayorMapping;
+        }
         public String GetMemberLastVotingSeason(String UserID)
         {
             //get first season

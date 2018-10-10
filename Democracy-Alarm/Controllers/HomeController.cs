@@ -38,6 +38,7 @@ namespace Democracy_Alarm.Controllers
             }
             VotingServices _VotingServices = new VotingServices();
             _VotingCityViewModel.Cities = _VotingServices.GetCitys();
+            _VotingCityViewModel.MayorMapping = _VotingServices.GetMayorMapping();
             _VotingCityViewModel.CityVotes = _VotingServices.GetCityVotes();
             _VotingCityViewModel.LastVotingSeason = _VotingServices.GetMemberLastVotingSeason(UserModel.LogingUserID);
             _VotingCityViewModel.CurrentVotingSeason = _VotingServices.GetCurrentVotingSeason();

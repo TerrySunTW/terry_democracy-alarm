@@ -12,4 +12,9 @@ namespace Democracy_Alarm.Models
         public string LoginUserName { get; set; }
         public string UserImage { get; set; }
     }
+    public class MyLocationViewModel
+    {
+        public string[] Cities { get; set; }
+        public string MyCity { get; set; }
+    }
 }

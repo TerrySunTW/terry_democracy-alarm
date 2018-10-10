@@ -37,5 +37,9 @@ namespace Democracy_Alarm.Controllers
             _PersonalVotingViewModel.VoteResult = _VotingServices.GetMemberVotingRecord(UserID);
             return PartialView(_PersonalVotingViewModel);
         }
+
+        
+
+
     }
 }

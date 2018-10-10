@@ -31,16 +31,19 @@
     for (int listIndex = 0; listIndex < numberOfLists + 1; listIndex++)
     {
         var list = Model.CityVotes.Skip(listIndex * listSize).Take(listSize);
-        <div class="w3-row-padding">
+        <div id="MayorList" class="w3-row-padding">
             @foreach (var element in list)
             {
                 CountNumber++;
-                <div class="w3-third w3-container w3-margin-bottom">
+            <div class="w3-third w3-container w3-margin-bottom">
+                <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
+                    <img src="~/Content/Images/Mayors/1.png" alt="Norway" style="width:100%" class="w3-hover-opacity">
+                    </a>
                     <div class="w3-container w3-white">
                         <p>
                             <b>
                                 <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
-                                    @element.CityName
+                                    @element.CityName - @Model.MayorMapping[element.CityName] <span style="float:right">總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</span>
                                 </a>
                             </b>
                         </p>
@@ -48,9 +51,9 @@
                             <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
                         </a>
 
-                        <p>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
+
                     </div>
-                </div>
+</div>
             }
         </div>
     }

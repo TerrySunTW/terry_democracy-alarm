@@ -16,11 +16,21 @@ namespace Democracy_Alarm.Services
         }
         public string GetUserLocation(string UserID)
         {
-            string Location = string.Empty;
+            string Location = "台北市";
             Users DBUser = _MyDB_Entities.Users.SingleOrDefault(p => p.UserID == UserID);
-            if(DBUser!=null)
+            if(DBUser!=null&& string.IsNullOrEmpty(DBUser.UserLocation)==false)
             {
                 Location = DBUser.UserLocation;
+            }
+            return Location;
+        }
+        public string UpdateUserLocation(string UserID,string Location)
+        {
+            Users DBUser = _MyDB_Entities.Users.SingleOrDefault(p => p.UserID == UserID);
+            if (DBUser != null)
+            {
+                DBUser.UserLocation= Location;
+                _MyDB_Entities.SaveChanges();
             }
             return Location;
         }

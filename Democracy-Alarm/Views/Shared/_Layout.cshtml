@@ -14,6 +14,7 @@
 </style>
 <script>
     var UID;
+    var MyCity = "台北市";
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -46,7 +47,6 @@
 
         });
     }
-
     window.fbAsyncInit = function () {
         FB.init({
             appId: '516183938824339',//official:225993038075570 testing:516183938824339
@@ -89,12 +89,15 @@
         FB.api('/me', function (response) {
             if (response) {
                 UID = response.id;
+                //Ger User Data
                 var posting = $.post("@Url.Action("index", "Home")", { LogingUserID: response.id, LoginType: "facebook", LoginUserName: response.name } );
                 posting.done(function (data) {
-                    if ("@TempData["IsLogined"]"==="1") {
-                        location.reload();
-                    }
                 });
+
+                $.post("@Url.Action("GetMyLocation", "User")", { UserID: UID } )
+                    .done(function (Location) {
+                        UpdateMyLocation(Location);
+                    });
             }
         });
     }
@@ -106,7 +109,12 @@
     if (typeof FB !== 'undefined') {
         FB.Event.subscribe('xfbml.render', finished_rendering);
     }
-    
+    function UpdateMyLocation(Location) {
+        $("#MyLocation").html(":" + Location);
+        $('a[data-rel^=voting]').hide();
+        $('a[data-rel^=voting][data^=' + Location + ']').show();
+        $('a[data-rel^=voting][data^=' + Location + ']').parent().parent().parent().prependTo("#MayorList");
+    }
 </script>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -139,10 +147,11 @@
 
 
             <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>縣、市長</a>
+            <a href="#" onclick="My_Location()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>所在投票縣市<span id="MyLocation"></span></a>
             <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>理念</a>
             <a href="#news" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>公告</a>
             <a href="#" onclick="My_Voting()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>我的投票</a>
-            <a href="#" onclick="Reset()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>===RESET===</a>
+            <a href="#" onclick="Reset()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>===清除我的投票===</a>
 
         </div>
     </nav>
@@ -227,8 +236,8 @@
         }
         function My_Location() {
              $.dialog({
-                        title: '我的投票區',
-                        content: 'url:@Url.Action("SetMyLocation", "Voting", null)?UserID=' + UID,
+                        title: '我的投票區(點擊變更)',
+                        content: 'url:@Url.Action("MyLocation", "User", null)?UserID=' + UID,
                         animation: 'scale',
                         columnClass: 'medium',
                         closeAnimation: 'scale',

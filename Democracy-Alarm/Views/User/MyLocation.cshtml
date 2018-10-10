@@ -1,0 +1,28 @@
+﻿@model Democracy_Alarm.Models.MyLocationViewModel
+<div class="w9-row-padding">
+    <div class="w9-third">
+        <p>
+            @for (int i = 0; i < Model.Cities.Length; i++)
+            {
+            <span name="LocationOpion" style="cursor:pointer;" onclick="SetMyLocation(this,'@Model.Cities[i]')" class='w3-tag  w3-medium w3-margin-bottom @(Model.Cities[i]==Model.MyCity?"w3-green":"w3-grey")'>
+                    @Model.Cities[i]
+            </span>
+            }
+
+
+        </p>
+    </div>
+
+</div>
+<script>
+    function SetMyLocation(obj,MyCity) {
+        $(".w3-green").addClass("w3-grey").removeClass("w3-green");
+        $(obj).addClass("w3-green").removeClass("w3-grey");
+        $.post("@Url.Action("SetMyLocation", "User", null, Request.Url.Scheme)", {
+                    UserID: UID,
+                    Location: MyCity
+                }).done(function (data) {
+                    UpdateMyLocation(MyCity);
+                });
+    }
+</script>
