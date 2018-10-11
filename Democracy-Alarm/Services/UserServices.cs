@@ -16,7 +16,7 @@ namespace Democracy_Alarm.Services
         }
         public string GetUserLocation(string UserID)
         {
-            string Location = "台北市";
+            string Location = "";
             Users DBUser = _MyDB_Entities.Users.SingleOrDefault(p => p.UserID == UserID);
             if(DBUser!=null&& string.IsNullOrEmpty(DBUser.UserLocation)==false)
             {

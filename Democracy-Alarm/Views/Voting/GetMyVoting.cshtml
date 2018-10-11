@@ -4,9 +4,9 @@
 }
 <table class="table table-bordered table-condensed table-striped">
     <tr>
-        <th>投票紀錄</th>
-        <th>縣市</th>
-        <th>時間</th>
+        <th width="100px">投票紀錄</th>
+        <th width="80px">縣市</th>
+        <th width="120px">季票時間</th>
         <th>
             支持原因
         </th>
@@ -16,8 +16,8 @@
         <tr>
             <td>@(item.IsDiscard ? "放棄" : "支持")</td>
             <td>@item.VotingTarget</td>
-            <td>@item.VotingSeason</td>
-            <td>@(item.IsDiscard ? "放棄選票" : "支持"+ item.VotingTarget + "長一票，因為"+item.VotingComment)</td>
+            <td>@item.VotingSeason.ToChineseSeason()</td>
+            <td>@(item.IsDiscard ? "放棄選票" : item.VotingTime.ToString("yyyy/MM/dd HH:mm")+"，支持" + item.VotingTarget + "長一票，因為" + item.VotingComment)</td>
         </tr>
     }
 

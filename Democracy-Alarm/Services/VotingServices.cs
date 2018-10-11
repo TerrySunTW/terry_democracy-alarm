@@ -227,6 +227,7 @@ namespace Democracy_Alarm.Services
 
             if (UserInfo != null)
             {
+                UserInfo.UserLocation = null;
                 var _VotingRecords = _MyDB_Entities.VotingRecords.Where(p => p.UserUID == UserInfo.UID).ToList();
                 _MyDB_Entities.VotingRecords.RemoveRange(_VotingRecords);
                 _MyDB_Entities.SaveChanges();

@@ -7,9 +7,7 @@
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
         <h1>
-            <b>
-                一張選票用四年，釋放正面的力量：縣市長篇
-            </b>
+            <img src="~/Content/Images/1.png"><img src="~/Content/Images/2.png"><img src="~/Content/Images/3.png">
         </h1>
         <div class="w3-section w3-bottombar w3-padding-16">
             <!-- <span class="w3-margin-right">Filter:</span>
@@ -32,28 +30,31 @@
     {
         var list = Model.CityVotes.Skip(listIndex * listSize).Take(listSize);
         <div id="MayorList" class="w3-row-padding">
+
             @foreach (var element in list)
             {
+
                 CountNumber++;
             <div class="w3-third w3-container w3-margin-bottom">
-                <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
-                    <img src="~/Content/Images/Mayors/1.png" alt="Norway" style="width:100%" class="w3-hover-opacity">
-                    </a>
-                    <div class="w3-container w3-white">
-                        <p>
-                            <b>
-                                <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
-                                    @element.CityName - @Model.MayorMapping[element.CityName] <span style="float:right">總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</span>
-                                </a>
-                            </b>
-                        </p>
-                        <a class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
-                            <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
+                    
+                <div class="w3-container w3-white">
+                    <p>
+                        <b>
+                            <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
+                                @element.CityName - @Model.MayorMapping[element.CityName]
+                            </a>
+                        </b>
+                        <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
+                            <img style="float:right" width="80px" src="~/Content/Images/Mayors/@(CountNumber+".jpg")" alt="Norway" style="width:100%" class="w3-hover-opacity">
                         </a>
+                    </p>
+                    <a style="display:none" class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
+                        <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
+                    </a>
+                    <span>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</span>
 
-
-                    </div>
-</div>
+                </div>
+            </div>
             }
         </div>
     }
@@ -70,18 +71,22 @@
         <p>
             馬丁．路德．金：在社會轉型期，最大的悲劇不是壞人的囂張， 而是好人的過度沉默。
         </p>
+        <p>&nbsp;</p><p>&nbsp;</p>
         <p>
             現在的民主制度，選民唯一有效的武器是一張選票。
-        </p>
-        這張選票的有效期限一天，選舉當天！其他的日子，選民只能沉默，默默的看著政客平時貪污腐化，然後在選前半年突然憂國憂民起來，攻擊一直為人們做事的政治家。
-
+        </p><p>&nbsp;</p>
+        <p>
+            這張選票的有效期限一天，選舉當天！其他的日子，選民只能沉默，默默的看著政客平時貪污腐化，然後在選前半年突然憂國憂民起來，攻擊一直為人們做事的政治家。
         </p>
         <p>
             最後在選前一波波的紅包黑函攻勢下，人民忘了政治家前幾年的貢獻，選擇了只會亂搞的政客。
         </p>
+        <p>&nbsp;</p>
         <p>
             所以現在民主選舉的狀況如圖一，我們選出的是會選舉的政客，不是會做事的政治家。
         </p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
         <p>
             圖二為政治家與政客在整個四年的行為模式的比較圖。
         </p>
@@ -89,25 +94,68 @@
             圖三說明民主選舉的缺陷，選票只有選舉當天有效，人的記憶會隨著時間模糊，所以焦點會放在選前半年，這半年正好是政客的活躍期，紅包黑函比理性做事更吸引人注意，所以選前政治家就被政客壓著打。如果我們只看選前半年投票，很容易選出擅長短期選舉的政客，而不是長期做事的政治家。
         </p>
         <p>
-            圖四說明如果我們能夠在政治家持續做事時，偶而關注一下，給他一些肯定，並記錄下當時的感想以防以後記憶模糊，這樣可以降低選前的紅包黑函的影響力，給自己與政治家安心。最終，我們可以選出一直做事的政治家。
+            圖四說明如果我們能夠在政治家持續做事時，偶而關注一下，給他一些肯定，並記錄下當時的感想防止以後記憶模糊，這樣可以降低選前紅包黑函的影響力，給自己與政治家安心。最終，我們可以選出一直做事的政治家。
         </p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
         <p>
             政治家每天努力的做事，除了選舉可以投選票的那一天，忙碌的公民如何出聲支持他？
         </p>
+        <p>&nbsp;</p>
         <p>
             一張選票用四年，一季一次，變成十六張季票，表達與承諾對政治家的支持。做法如圖五。
         </p>
+        <p>&nbsp;</p>
         <p>
-            我們的目標如圖六。不要讓政治家辛苦做三年半，心裡卻一直不安，怕在選前的紅包黑函攻勢下，選民背叛自己。每一季花三分鐘支持辛苦工作的政治家，讓他們心安。有公民的一路相隨，會有越來越多的政治家勇於站出來做事。
+            我們的目標如圖六。不要讓政治家辛苦做三年半，心裡卻一直不安，怕在選前的紅包黑函攻勢下，或突然的事件讓選民背叛自己。每一季花三分鐘支持辛苦工作的政治家，讓他們心安。有公民的一路相隨，會有越來越多的政治家勇於站出來做事。
         </p>
+        <p>&nbsp;</p>
         <p>
             附註：這十六張季票只代表正面支持的力量，並沒有負面的選項，因為這社會負面的情緒已經夠多了，我們缺的是正面的力量。
         </p>
     </h5>
-    <p><img src="~/Content/Images/presentation1.png" /></p>
-    <p><img src="~/Content/Images/presentation2.png" /></p>
-    <p><img src="~/Content/Images/presentation3.png" /></p>
-    <p><img src="~/Content/Images/presentation4.png" /></p>
+    <p>
+        <picture>
+            <source srcset="~/Content/Images/presentation1.png" media="(min-width: 750px)">
+            <source srcset="~/Content/Images/presentation1_small.png" media="(min-width: 300px)">
+            <img src="~/Content/Images/presentation1.png" />
+        </picture>
+    </p>
+    <p>
+        <picture>
+            <source srcset="~/Content/Images/presentation2.png" media="(min-width: 750px)">
+            <source srcset="~/Content/Images/presentation2_small.png" media="(min-width: 300px)">
+            <img src="~/Content/Images/presentation2.png" />
+        </picture>
+    </p>
+    <p>
+        <picture>
+            <source srcset="~/Content/Images/presentation3.png" media="(min-width: 750px)">
+            <source srcset="~/Content/Images/presentation3_small.png" media="(min-width: 300px)">
+            <img src="~/Content/Images/presentation3.png" />
+        </picture>
+    </p>
+    <p>
+        <picture>
+            <source srcset="~/Content/Images/presentation4.png" media="(min-width: 750px)">
+            <source srcset="~/Content/Images/presentation4_small.png" media="(min-width: 300px)">
+            <img src="~/Content/Images/presentation4.png" />
+        </picture>
+    </p>
+    <p>
+        <picture>
+            <source srcset="~/Content/Images/presentation5.png" media="(min-width: 750px)">
+            <source srcset="~/Content/Images/presentation5_small.png" media="(min-width: 300px)">
+            <img src="~/Content/Images/presentation5.png" />
+        </picture>
+    </p>
+    <p>
+        <picture>
+            <source srcset="~/Content/Images/presentation6.png" media="(min-width: 750px)">
+            <source srcset="~/Content/Images/presentation6_small.png" media="(min-width: 300px)">
+            <img src="~/Content/Images/presentation6.png" />
+        </picture>
+    </p>
     <hr>
 </div>
 <div class="w3-container w3-padding-large" style="margin-bottom:32px">
@@ -118,26 +166,33 @@
     </h1>
     <p>
         <h5>
-            我們在第二階段會使用電話簡訊防止投票部隊。即使如此也不能保證投票部隊會花大錢申請更多電話。但是，一張選票用四年的主要目標依然可以達成，因為我們的目標是給政治家與公民安心。
+            我們在第二階段會使用電話簡訊防止投票部隊。即使如此也不能保證投票部隊會花大錢申請更多電話。但是，一張選票用四年的主要目標依然可以達成，因為我們的目標是讓政治家與公民安心。
         </h5>
     </p>
     <p>
-        <h5>為什麼可以給政治家安心？</h5>
+        <h5>
+            為什麼可以讓政治家安心？
+        </h5>
 
         <ul>
             <li>
-                季票的累積票數可以讓政治家知道有多少人肯定他。政治家沒有投票部隊，所以他知道，每一票都是確實的，並且為什麼投這一票的理由與情感都記錄在選民的筆記本，這些都是對抗選前一波波紅包與黑函攻勢的正面力量。</li>
-             <li>當然可能有政客會請假投票部隊，但這不會讓政客心安，因為自己也搞不清楚有多少票數是自己灌水的。</li>
+                季票的累積票數可以讓政治家知道有多少人肯定他。政治家沒有投票部隊，所以他知道每一票都是確實的，並且為什麼投這一票的理由與情感都記錄在選民的筆記本，這些都是對抗選前一波波紅包與黑函攻勢的正面力量。
+            </li>
+            <li>
+                當然可能有政客會請投票部隊，但這不會讓政客心安，因為自己也搞不清楚有多少票數是自己灌水的。
+            </li>
             </ul>
 
 </p>
     <p>
         <h5>
-            為什麼可以給給公民安心？
+            為什麼可以讓公民安心？
         </h5>
             
         <ul>
-            <li>選民的筆記本裡記錄著這票的理由與情感，在公開的投票訊息中，也可以看到有多的正面力量在支持爭治家改革。</li>
+            <li>
+                選民的筆記本裡記錄著投季票的理由與情感，在公開的投票訊息中，也可以看到有多的正面力量在支持政治家改革。
+            </li>
             <li>記憶會淡忘，但在這裡累積的正面力量一直存在。</li>
         </ul>
                 
@@ -162,14 +217,16 @@
 <div class="w3-grey">
     <div class="w3-container w3-dark-grey w3-padding">
         2018選舉前為封測階段，主要是讓公民嘗試民主小鬧鐘的概念，並且除錯與調整介面。如有bug，請使用者海涵。初期以Facebook或Google帳號做簡單認證。
-
     </div>
 </div>
 <p>
     第二階段：大規模試驗階段
+
 </p>
 <div class="w3-grey">
-    <div class="w3-container w3-dark-grey w3-padding">2018選舉後，開始做大規模試驗，目標是讓民主小鬧鐘得到更多人的認可。這個階段將使用手機簡訊認證。</div>
+    <div class="w3-container w3-dark-grey w3-padding">
+        2018選舉後，開始做大規模試驗，目標是讓民主小鬧鐘得到更多人的認可。這個階段將使用手機簡訊認證。
+    </div>
 </div>
 <p>
     第三階段：人人都是資料中心階段
@@ -212,7 +269,7 @@
                             '<div class="form-group">' +
                             '<label>投給' + CityName + '-' + NextFullVotingSeason+'</label>' +
                             '<input type="hidden" id="VotingCity" value="' + CityName+'">' +
-                            '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧..." class="name form-control" maxlength="120" />' +
+                            '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧..." class="name form-control" maxlength="140" />' +
                             '</div>' +
                             '</form>'
                         ,
