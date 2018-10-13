@@ -17,7 +17,7 @@ namespace Democracy_Alarm.Services
                           select new CityVoting {
                               CityName = Voting.Value,
                               Votes = (from CityVotingCount in _MyDB_Entities.VotingRecords
-                                       where CityVotingCount.VotingTarget==Voting.Value
+                                       where CityVotingCount.VotingTarget==Voting.Value && CityVotingCount.IsDiscard==false
                                        select CityVotingCount
                                        ).Count()
                           };
