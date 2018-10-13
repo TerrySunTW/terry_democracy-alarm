@@ -102,6 +102,7 @@
 
                 $.post("@Url.Action("GetVotingInfo", "User")", { UserID: UID } )
                     .done(function (data) {
+                        console.log(data);
                         LastVotingSeason = data.LastVotingSeason;
                         NextFullVotingSeason = data.NextFullVotingSeason;
                         CurrentVotingSeason = data.CurrentVotingSeason;

@@ -68,42 +68,47 @@ namespace Democracy_Alarm.Services
 
             if(UserInfo != null)
             {
-                LastVotingSeason = (from VotingRecord in _MyDB_Entities.VotingRecords
-                                    where VotingRecord.UserUID == UserInfo.UID
-                                    orderby VotingRecord.UID descending
-                                    select VotingRecord.VotingSeason).FirstOrDefault();
+                var UserLastSeason = (from VotingRecord in _MyDB_Entities.VotingRecords
+                                      where VotingRecord.UserUID == UserInfo.UID
+                                      orderby VotingRecord.UID descending
+                                      select VotingRecord.VotingSeason).FirstOrDefault();
+                if(UserLastSeason!=null)
+                {
+                    LastVotingSeason = UserLastSeason;
+                }
+                
             }
             return LastVotingSeason;
         }
         public String GetCurrentVotingSeason()
         {
             String SeasonString = "Q1";
-            if ((DateTime.Now.Month > 11 || (DateTime.Now.Month == 11 && DateTime.Now.Day >= 15)) &&
-                (DateTime.Now.Month < 2 || (DateTime.Now.Month ==2 && DateTime.Now.Day < 15))
+            if ((SystemService.GetTW_Time().Month > 11 || (SystemService.GetTW_Time().Month == 11 && SystemService.GetTW_Time().Day >= 15)) &&
+                (SystemService.GetTW_Time().Month < 2 || (SystemService.GetTW_Time().Month ==2 && SystemService.GetTW_Time().Day < 15))
                 )
             {
                 SeasonString = "Q4";
             }
-            else if ((DateTime.Now.Month > 2 || (DateTime.Now.Month == 2 && DateTime.Now.Day >= 15)) &&
-                (DateTime.Now.Month < 5 || (DateTime.Now.Month == 5 && DateTime.Now.Day < 15))
+            else if ((SystemService.GetTW_Time().Month > 2 || (SystemService.GetTW_Time().Month == 2 && SystemService.GetTW_Time().Day >= 15)) &&
+                (SystemService.GetTW_Time().Month < 5 || (SystemService.GetTW_Time().Month == 5 && SystemService.GetTW_Time().Day < 15))
                 )
             {
                 SeasonString = "Q1";
             }
-            else if ((DateTime.Now.Month > 5 || (DateTime.Now.Month == 5 && DateTime.Now.Day >= 15)) &&
-                (DateTime.Now.Month < 8 || (DateTime.Now.Month == 8 && DateTime.Now.Day < 15))
+            else if ((SystemService.GetTW_Time().Month > 5 || (SystemService.GetTW_Time().Month == 5 && SystemService.GetTW_Time().Day >= 15)) &&
+                (SystemService.GetTW_Time().Month < 8 || (SystemService.GetTW_Time().Month == 8 && SystemService.GetTW_Time().Day < 15))
                 )
             {
                 SeasonString = "Q2";
             }
-            else if ((DateTime.Now.Month > 8 || (DateTime.Now.Month == 8 && DateTime.Now.Day >= 15)) &&
-               (DateTime.Now.Month < 11 || (DateTime.Now.Month == 11 && DateTime.Now.Day < 15))
+            else if ((SystemService.GetTW_Time().Month > 8 || (SystemService.GetTW_Time().Month == 8 && SystemService.GetTW_Time().Day >= 15)) &&
+               (SystemService.GetTW_Time().Month < 11 || (SystemService.GetTW_Time().Month == 11 && SystemService.GetTW_Time().Day < 15))
                )
             {
                 SeasonString = "Q3";
             }
 
-            return DateTime.Now.Year.ToString()+SeasonString;
+            return SystemService.GetTW_Time().Year.ToString()+SeasonString;
         }
         public string GetnNextVotingSeason(String LastVotingSeason)
         {
@@ -125,7 +130,7 @@ namespace Democracy_Alarm.Services
         }
         public void GetVotingYearSeasonFromString(String SourceVotingSeason, out int VotingYear,out int VotingSeason)
         {
-            Regex regex = new Regex("([0-9]{0,4})Q([1-4])", RegexOptions.IgnoreCase);
+            Regex regex = new Regex("([0-9]{0,4})Q([0-4])", RegexOptions.IgnoreCase);
             VotingYear = 2018;
             VotingSeason = 1;
             if(!string.IsNullOrEmpty(SourceVotingSeason))
@@ -151,7 +156,7 @@ namespace Democracy_Alarm.Services
                     VotingSeason = Season,
                     VotingComment = Comment,
                     IsDiscard = IsDiscard,
-                    Createtime = DateTime.Now
+                    Createtime = DateTime.UtcNow.AddHours(8)
                 };
                 _MyDB_Entities.VotingRecords.Add(_VotingRecord);
 

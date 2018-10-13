@@ -45,13 +45,14 @@
                             </a>
                         </b>
                         <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
-                            <img style="float:left;margin-right:16px" width="80px" src="~/Content/Images/Mayors/@(CountNumber+".jpg")" alt="Norway" style="width:100%" class="w3-hover-opacity">
+                            <img style="float:left;margin-right:16px" width="120px" src="~/Content/Images/Mayors/@(CountNumber+".jpg")" alt="Norway" style="width:100%" class="w3-hover-opacity">
                         </a>
                     </p>
+                    <p>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
                     <a style="display:none" class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
                         <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
                     </a>
-                    <span>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</span>
+                    
 
                 </div>
             </div>
@@ -264,7 +265,7 @@
                         content: '' +
                             '<form action="" class="formName">' +
                             '<div class="form-group">' +
-                            '<label>投給' + CityName + '-' + NextFullVotingSeason+'</label>' +
+                            '<label>投給' + CityName + '-' + NextFullVotingSeason.replace("Q1", "第一季").replace("Q2", "第二季").replace("Q3", "第三季").replace("Q4", "第四季")+'</label>' +
                             '<input type="hidden" id="VotingCity" value="' + CityName+'">' +
                             '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧..." class="name form-control" maxlength="140" />' +
                             '</div>' +
@@ -305,7 +306,6 @@
             function SubmitVoting(IsDiscard) {
                 var VotingCity = $("#VotingCity").val();
                 var VotingReason = $("#VotingReason").val();
-                debugger;
                 if (
                     ((CurrentVotingSeason < NextVotingSeason) && (CurrentVotingYear == NextVotingYear)) ||
                     CurrentVotingYear < NextVotingYear) {

@@ -47,13 +47,14 @@ namespace Democracy_Alarm.Services
                         UserImageUrl = string.Format("http://graph.facebook.com/{0}/picture?type=square", _UserModel.LogingUserID);
                         break;
                 }
+
                 DBUser = new Users()
                 {
                     UserID = _UserModel.LogingUserID,
                     LoginType = _UserModel.LoginType,
                     UserName = _UserModel.LoginUserName,
                     UserImage = UserImageUrl,
-                    Createtime = DateTime.Now
+                    Createtime = SystemService.GetTW_Time()
                 };
                 //new item
                 _MyDB_Entities.Users.Add(DBUser);
