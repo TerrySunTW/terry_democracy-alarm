@@ -257,6 +257,8 @@
     <Content Include="Content\Images\presentation5_small.png" />
     <Content Include="Content\Images\presentation6.png" />
     <Content Include="Content\Images\presentation6_small.png" />
+    <Content Include="Content\Images\presentation_i.png" />
+    <Content Include="Content\Images\presentation_i_small.png" />
     <Content Include="Content\jquery-confirm.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
