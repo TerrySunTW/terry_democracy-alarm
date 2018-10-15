@@ -208,7 +208,7 @@ namespace Democracy_Alarm.Services
 
                 results = (from VotingRecord in _MyDB_Entities.VotingRecords
                            join User in _MyDB_Entities.Users on VotingRecord.UserUID equals User.UID
-                           where VotingRecord.VotingTarget == City.Value
+                           where VotingRecord.VotingTarget == City.Value && VotingRecord.IsDiscard == false
                            orderby VotingRecord.Createtime descending
                            select new VotingResult()
                            {

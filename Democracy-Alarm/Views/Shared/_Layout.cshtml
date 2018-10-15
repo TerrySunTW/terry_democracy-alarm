@@ -96,7 +96,8 @@
                             My_Location();
                         }
                         else {
-                            UpdateMyLocation(Location);
+                            
+    (Location);
                         }
                     });
 
@@ -135,7 +136,7 @@
     <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
         <br>
         <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-xxlarge w3-padding w3-hover-grey" title="close menu">
-            <i class="fa fa-fast-backward"></i>
+            <i class="fa fa-fast-backward">回到投票頁</i>
         </a>
         <div class="w3-container">
 
@@ -220,14 +221,25 @@
                     });
         }
         function My_Location() {
-            window.democracyalarm_LocationDialog = $.dialog({
-                        title: '我的投票區(點擊變更)',
-                        content: 'url:@Url.Action("MyLocation", "User", null)?UserID=' + UID,
-                        animation: 'scale',
-                        columnClass: 'medium',
-                        closeAnimation: 'scale',
-                        backgroundDismiss: true
-            });
+            if (UID) {
+                window.democracyalarm_LocationDialog = $.dialog({
+                    title: '我的投票區(點擊變更)',
+                    content: 'url:@Url.Action("MyLocation", "User", null)?UserID=' + UID,
+                    animation: 'scale',
+                    columnClass: 'medium',
+                    closeAnimation: 'scale',
+                    backgroundDismiss: true
+                });
+            }
+            else {
+                $.alert({
+                    title: 'Error',
+                    icon: 'fa fa-warning',
+                    type: 'red',
+                    content: '請先按Facebook登入!!',
+                });
+            }
+            
             
         }
         function Reset() {

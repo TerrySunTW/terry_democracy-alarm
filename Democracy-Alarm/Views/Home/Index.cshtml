@@ -4,10 +4,10 @@
 }
 <!-- Header -->
 <header id="portfolio">
-    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars">個人設定</i></span>
     <div class="w3-container">
         <h1>
-            <img src="~/Content/Images/1.png"><img src="~/Content/Images/2.png"><img src="~/Content/Images/3.png">
+            <img src="~/Content/Images/1.png">
         </h1>
         <div class="w3-section w3-bottombar w3-padding-16">
             <!-- <span class="w3-margin-right">Filter:</span>
@@ -35,27 +35,27 @@
             {
 
                 CountNumber++;
-            <div class="w3-third w3-container w3-margin-bottom">
-                    
-                <div class="w3-container w3-white">
-                    <p>
-                        <b>
-                            <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
-                                @element.CityName - @Model.MayorMapping[element.CityName]
-                            </a>
-                        </b>
-                        <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
-                            <img style="float:left;margin-right:16px" width="120px" src="~/Content/Images/Mayors/@(CountNumber+".jpg")" alt="Norway" style="width:100%" class="w3-hover-opacity">
-                        </a>
-                    </p>
-                    <p>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
-                    <a style="display:none" class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
-                        <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
-                    </a>
-                    
+                <div class="w3-third w3-container w3-margin-bottom">
 
+                    <div class="w3-container w3-white">
+                        <p>
+                            <b>
+                                <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
+                                    @element.CityName - @Model.MayorMapping[element.CityName]
+                                </a>
+                            </b>
+                            <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
+                                <img style="float:left;margin-right:16px" width="120px" src="~/Content/Images/Mayors/@(CountNumber+".jpg")" alt="Norway" style="width:100%" class="w3-hover-opacity">
+                            </a>
+                        </p>
+                        <p>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
+                        <a style="display:none" class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
+                            <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
+                        </a>
+
+
+                    </div>
                 </div>
-            </div>
             }
         </div>
     }
@@ -67,6 +67,7 @@
 </div>
 <div class="w3-section w3-bottombar w3-padding-16"></div>
 <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h1><b>一張選票用四年，釋放正面的力量：縣市長篇</b></h1>
     <h1><b>理念</b></h1>
     <p>
         <ul>
@@ -118,7 +119,7 @@
         </ul>
 
     </p>
-    
+
     <p>
         <picture>
             <img src="~/Content/Images/presentation1.png" />
@@ -196,57 +197,56 @@
     </p>
     <hr>
 </div>
-<div class="w3-row-padding w3-padding-16" id="news">
+<div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h1><b>公告</b></h1>
+    <p>
+    <p>
+        <h5>
+            「一張選票用四年」開發步驟如下：
+        </h5>
+        <h5>
+            第一階段：封測階段
 
-</div>
-<h1><b>公告</b></h1>
-<h2>
-    民主小鬧鐘開發步驟如下：
-</h2>
-<!-- Progress bars / Skills -->
-<p>
-    第一階段：封測階段
-</p>
-<div class="w3-grey">
-    <div class="w3-container w3-dark-grey w3-padding">
-        2018選舉前為封測階段，主要是讓公民嘗試「一張選票用四年」的概念，並且除錯與調整介面。如有bug，請使用者海涵。初期以Facebook或Google帳號做簡單認證。
+        </h5>
+        <ul>
+            <li>
+                2018選舉前為封測階段，主要是讓公民嘗試「一張選票用四年」的概念，並且除錯與調整介面。如有bug，請使用者海涵。初期以Facebook帳號做簡單認證。
+            </li>
+            <li>
+                這個版本讓大家嘗試投過去四年的16張季票。試看看，您記得縣市長們前面三年半做的事嗎？還是您只記得最近幾個月的口水戰呢？如果只記得最近的口水戰，辛苦做前面三年半的政治家就危險了。這會不會是政壇上政治家快絕跡的原因呢？
+
+            </li>
+            <li>
+                本網頁透過Facebook帳號登錄，無存取個資。
+            </li>
+        </ul>
+        <h5>
+            第二階段：大規模試驗階段
+        </h5>
+        <ul>
+            <li>
+                2018選舉後，開始做大規模試驗，目標是讓「一張選票用四年」得到更多人的認可。這個階段將使用手機簡訊認證。
+            </li>
+        </ul>
+        <h5>
+            第三階段：人人都是資料中心階段
+
+        </h5>
+        <ul>
+            <li>
+                使用人數夠多後，投票與紀錄的資料以區塊鍊保存在每一個投票者手上。每一個公民手中將有滿滿的正面力量。
+
+            </li>
+        </ul>
+
+    </p>
+
+    </p>
     </div>
-</div>
-<p>
-    第二階段：大規模試驗階段
+    <hr>
 
-</p>
-<div class="w3-grey">
-    <div class="w3-container w3-dark-grey w3-padding">
-        2018選舉後，開始做大規模試驗，目標是讓「一張選票用四年」得到更多人的認可。這個階段將使用手機簡訊認證。
-    </div>
-</div>
-<p>
-    第三階段：人人都是資料中心階段
-</p>
-<div class="w3-grey">
-    <div class="w3-container w3-dark-grey w3-padding">
-        使用人數夠多後，投票與紀錄的資料以區塊鍊保存在每一個投票者手上。每一個公民手中將有滿滿的正面力量。
-    </div>
-</div>
-<p>
-    每季的投票日期如下：
-
-</p>
-<div class="w3-grey">
-    <div class="w3-container w3-dark-grey w3-padding">
-        <h2>2月15日</h2>
-        <h2>5月15日</h2>
-        <h2>8月15日</h2>
-        <h2>11月15日</h2>
-
-    </div>
-</div>
-
-<hr>
-
-@section scripts {
-    <script>
+    @section scripts {
+        <script>
             var SelectedIndex = 0;
             jQuery(document).ready(function ($) {
                 setup_voting();
@@ -348,6 +348,6 @@
                 }
                 NextFullVotingSeason = NextVotingYear + 'Q' + NextVotingSeason;
             }
-    </script>
+        </script>
 
-}
+    }
