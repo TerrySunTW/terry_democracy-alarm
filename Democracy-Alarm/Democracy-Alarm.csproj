@@ -222,6 +222,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\1.png" />
+    <Content Include="Content\Images\flow_chart.jpg" />
     <Content Include="Content\Images\Mayors\1.jpg" />
     <Content Include="Content\Images\Mayors\10.jpg" />
     <Content Include="Content\Images\Mayors\11.jpg" />
@@ -244,18 +245,7 @@
     <Content Include="Content\Images\Mayors\7.jpg" />
     <Content Include="Content\Images\Mayors\8.jpg" />
     <Content Include="Content\Images\Mayors\9.jpg" />
-    <Content Include="Content\Images\presentation1.png" />
-    <Content Include="Content\Images\presentation1_small.png" />
-    <Content Include="Content\Images\presentation2.png" />
-    <Content Include="Content\Images\presentation2_small.png" />
-    <Content Include="Content\Images\presentation3.png" />
-    <Content Include="Content\Images\presentation3_small.png" />
-    <Content Include="Content\Images\presentation4.png" />
-    <Content Include="Content\Images\presentation4_small.png" />
-    <Content Include="Content\Images\presentation5.png" />
-    <Content Include="Content\Images\presentation5_small.png" />
-    <Content Include="Content\Images\presentation6.png" />
-    <Content Include="Content\Images\presentation6_small.png" />
+    <Content Include="Content\Images\presentation_1.png" />
     <Content Include="Content\Images\presentation_i.png" />
     <Content Include="Content\Images\presentation_i_small.png" />
     <Content Include="Content\jquery-confirm.min.css" />

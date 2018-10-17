@@ -23,3 +23,11 @@ select,
 textarea {
     max-width: 280px;
 }
+body, p, li, i, a, b {
+    font-family: "Helvetica","微軟正黑體", Verdana, Arial, sans-serif;
+}
+p,li,i,a {
+    font-size: 20px;
+    line-height: 35px;
+    margin-bottom: 25px;
+}
