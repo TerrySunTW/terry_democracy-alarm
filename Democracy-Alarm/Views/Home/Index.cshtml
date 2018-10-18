@@ -39,9 +39,9 @@
                 <div class="w3-third w3-container w3-margin-bottom">
 
                     <div class="w3-container w3-white">
-                        <p>
+                        <p class="mayors">
                             <b>
-                                <a class="button line-blue" data-rel="CityResult" data="@element.CityName" href="#">
+                                <a class="button line-blue " data-rel="CityResult" data="@element.CityName" href="#">
                                     @element.CityName - @Model.MayorMapping[element.CityName]
                                 </a>
                             </b>
@@ -49,11 +49,11 @@
                                 <img style="float:left;margin-right:16px" width="120px" src="~/Content/Images/Mayors/@(CountNumber+".jpg")" alt="Norway" style="width:100%" class="w3-hover-opacity">
                             </a>
                         </p>
-                        <p>總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
-                        <a style="display:none" class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
-                            <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
-                        </a>
-
+                        <p class="mayors">總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
+  
+                            <a style="display:none" class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
+                                <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
+                            </a>
 
                     </div>
                 </div>
