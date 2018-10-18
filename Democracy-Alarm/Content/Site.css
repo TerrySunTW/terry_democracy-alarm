@@ -26,7 +26,7 @@ textarea {
 body, p, li, i, a, b {
     font-family: "Helvetica","微軟正黑體", Verdana, Arial, sans-serif;
 }
-p,li,i,a {
+p,li,i {
     font-size: 20px;
     line-height: 35px;
     margin-bottom: 25px;
