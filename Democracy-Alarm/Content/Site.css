@@ -35,3 +35,7 @@ p,li,i {
     line-height: 32px;
     margin-bottom: 5px;
 }
+.processing_flow > span {
+    font-weight: bold;
+    display:inline-block;
+}
