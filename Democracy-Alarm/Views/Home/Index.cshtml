@@ -4,13 +4,10 @@
 }
 <!-- Header -->
 <header id="portfolio">
-    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars" style="font-size:25px">個人設定</i></span>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars" style="font-size:25;margin-bottom: 0px;">個人設定</i></span>
     <div class="w3-container">
         <h1>
-            <img src="~/Content/Images/1.png"><br>
-            <p class="processing_flow">
-                    <span>> 1.臉書登入</span> <span>> 2.選擇戶籍選區</span> <span>> 3.每季筆記與投票</span> <span>> 4.完成</span>
-            </p>
+            <img src="~/Content/Images/20181102200220.jpg" width="100%">
         </h1>
         <div class="w3-section w3-bottombar">
             <!-- <span class="w3-margin-right">Filter:</span>
@@ -93,7 +90,7 @@
                             '<div class="form-group">' +
                             '<label>投給' + CityName + '-' + NextFullVotingSeason.replace("Q1", "第一季").replace("Q2", "第二季").replace("Q3", "第三季").replace("Q4", "第四季")+'</label>' +
                             '<input type="hidden" id="VotingCity" value="' + CityName+'">' +
-                            '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧..." class="name form-control" maxlength="140" />' +
+                            '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧...(最多100字)" class="name form-control" maxlength="140" />' +
                             '</div>' +
                             '</form>'
                         ,

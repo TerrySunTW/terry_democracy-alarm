@@ -57,7 +57,7 @@
     }
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '@System.Configuration.ConfigurationManager.AppSettings["FacebookKey"]',//official:225993038075570 testing:516183938824339
+            appId: '@System.Configuration.ConfigurationManager.AppSettings["FacebookKey"]',
             cookie: true,  // enable cookies to allow the server to access
             // the session
             xfbml: true,  // parse social plugins on this page
@@ -167,7 +167,6 @@
             <a href="#" onclick="My_Location()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-pin fa-fw w3-margin-right"></i><button class="w3-button w3-teal w3-padding-large w3-hover-black">選擇投票縣市<span id="MyLocation"></span></button></a>
 
             <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>理念</a>
-            <a href="#news" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>公告</a>
             <a href="#" onclick="My_Voting()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>我的投票</a>
             <a href="#" onclick="Reset()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>===清除我的投票===</a>
 
