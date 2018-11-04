@@ -83,26 +83,26 @@ namespace Democracy_Alarm.Services
         public String GetCurrentVotingSeason()
         {
             String SeasonString = "Q1";
-            if ((SystemService.GetTW_Time().Month > 11 || (SystemService.GetTW_Time().Month == 11 && SystemService.GetTW_Time().Day >= 15)) &&
-                (SystemService.GetTW_Time().Month < 2 || (SystemService.GetTW_Time().Month ==2 && SystemService.GetTW_Time().Day < 15))
+            if ((SystemService.GetTW_Time().Month >= 12) ||
+                (SystemService.GetTW_Time().Month < 3)
                 )
             {
                 SeasonString = "Q4";
             }
-            else if ((SystemService.GetTW_Time().Month > 2 || (SystemService.GetTW_Time().Month == 2 && SystemService.GetTW_Time().Day >= 15)) &&
-                (SystemService.GetTW_Time().Month < 5 || (SystemService.GetTW_Time().Month == 5 && SystemService.GetTW_Time().Day < 15))
+            else if ((SystemService.GetTW_Time().Month >= 3) &&
+                (SystemService.GetTW_Time().Month < 6)
                 )
             {
                 SeasonString = "Q1";
             }
-            else if ((SystemService.GetTW_Time().Month > 5 || (SystemService.GetTW_Time().Month == 5 && SystemService.GetTW_Time().Day >= 15)) &&
-                (SystemService.GetTW_Time().Month < 8 || (SystemService.GetTW_Time().Month == 8 && SystemService.GetTW_Time().Day < 15))
+            else if ((SystemService.GetTW_Time().Month >= 6 ) &&
+                (SystemService.GetTW_Time().Month < 9 )
                 )
             {
                 SeasonString = "Q2";
             }
-            else if ((SystemService.GetTW_Time().Month > 8 || (SystemService.GetTW_Time().Month == 8 && SystemService.GetTW_Time().Day >= 15)) &&
-               (SystemService.GetTW_Time().Month < 11 || (SystemService.GetTW_Time().Month == 11 && SystemService.GetTW_Time().Day < 15))
+            else if ((SystemService.GetTW_Time().Month >= 9 ) &&
+               (SystemService.GetTW_Time().Month < 12 )
                )
             {
                 SeasonString = "Q3";
@@ -149,6 +149,10 @@ namespace Democracy_Alarm.Services
                             select User).FirstOrDefault();
             if(UserInfo!=null)
             {
+                if(Comment.Length>120)
+                {
+                    Comment = Comment.Substring(0, 120);
+                }
                 VotingRecords _VotingRecord = new VotingRecords()
                 {
                     UserUID = UserInfo.UID,
