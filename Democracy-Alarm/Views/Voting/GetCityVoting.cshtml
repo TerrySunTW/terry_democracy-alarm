@@ -3,22 +3,14 @@
     ViewBag.Title = "GetCityVoting";
 }
 
-<table class="table table-bordered table-condensed table-striped">
-    <tr>
-        <th width="100px">
-            暱稱
-        </th>
-        <th width="120px">季票時間</th>
-        <th>
-            支持原因
-        </th>
-    </tr>
+<table class="table table-bordered table-condensed table-striped" style="word-break: break-all;">
     @foreach (var item in Model.VoteResult)
     {
     <tr>
-        <td>@item.UserName</td>
-        <td>@item.VotingSeason.ToChineseSeason()</td>
-        <td>@(item.VotingTime.ToString("yyyy/MM/dd HH:mm")+"，支持" + item.VotingTarget + "長一票，因為" + item.VotingComment)</td>
+        <td>
+            <b> @item.UserName - @item.VotingSeason.ToChineseSeason()</b>
+        <br>
+        @(item.VotingTime.ToString("yyyy/MM/dd HH:mm")+"，支持" + item.VotingTarget + "長一票，因為" + item.VotingComment)</td>
     </tr>
     }
 
