@@ -77,8 +77,19 @@
         <script>
             var SelectedIndex = 0;
             jQuery(document).ready(function ($) {
-                setup_voting();
+                //setup_voting();
+                setup_voting_message();
             });
+            function setup_voting_message() {
+                $('a[data-rel^=voting]').on('click', function () {
+                    $.alert({
+                        title: '2018選後，開放記錄與投票',
+                        icon: 'fa fa-warning',
+                        type: 'green',
+                        content: '2018選後，開放記錄與投票',
+                    });
+                });
+            }
             function setup_voting() {
                 $('a[data-rel^=voting]').on('click', function () {
                     var CityName = this.attributes['data'].value;
