@@ -48,10 +48,10 @@
                                 <img style="float:left;margin-right:16px" width="120px" src="~/Content/Images/Mayors/@(CountNumber+".jpg")" alt="Norway" style="width:100%" class="w3-hover-opacity">
                             </a>
                         </p>
-                        <p class="mayors">總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 票</p>
+                        <p class="mayors">總支持數:<span id="VotingCount_@CountNumber">@element.Votes</span> 個讚</p>
   
                             <a style="display:none" class="button line-blue" data-rel="voting" data="@element.CityName" voting_index="@CountNumber" href="#">
-                                <button class="w3-button w3-teal w3-padding-large w3-hover-black">馬上投票</button>
+                                <button class="w3-button w3-teal w3-padding-large w3-hover-black">立即評量</button>
                             </a>
 
                     </div>
@@ -77,8 +77,8 @@
         <script>
             var SelectedIndex = 0;
             jQuery(document).ready(function ($) {
-                //setup_voting();
-                setup_voting_message();
+                setup_voting();
+                //setup_voting_message();
             });
             function setup_voting_message() {
                 $('a[data-rel^=voting]').on('click', function () {
@@ -95,27 +95,27 @@
                     var CityName = this.attributes['data'].value;
                     SelectedIndex = this.attributes['voting_index'].value;
                     $.confirm({
-                        title: '投下神聖的一票',
+                        title: '選後真正做老闆',
                         content: '' +
                             '<form action="" class="formName">' +
                             '<div class="form-group">' +
-                            '<label>投給' + CityName + '-' + NextFullVotingSeason.replace("Q1", "第一季").replace("Q2", "第二季").replace("Q3", "第三季").replace("Q4", "第四季")+'</label>' +
+                            '<label>評量' + CityName + '-' + NextFullVotingSeason.replace("Q1", "第一季").replace("Q2", "第二季").replace("Q3", "第三季").replace("Q4", "第四季")+'</label>' +
                             '<input type="hidden" id="VotingCity" value="' + CityName+'">' +
-                            '<input type="text" id="VotingReason" placeholder="記錄一下投票的原因吧...(最多100字)" class="name form-control" maxlength="120" />' +
+                            '<input type="text" id="VotingReason" placeholder="記錄一下給讚的原因吧...(最多100字)" class="name form-control" maxlength="120" />' +
                             '</div>' +
                             '</form>'
                         ,
                         closeIcon: true,
                         buttons: {
                             Vote: {
-                                text: '我要投票',
+                                text: '完成評量',
                                 btnClass: 'btn-orange',
                                 action: function () {
                                     SubmitVoting(false);
                                 }
                             },
                             GiveUp: {
-                                text: '這票作廢',
+                                text: '放棄評量',
                                 btnClass: 'btn-orange',
                                 action: function () {
                                     SubmitVoting(true);
@@ -144,10 +144,10 @@
                     ((CurrentVotingSeason < NextVotingSeason) && (CurrentVotingYear == NextVotingYear)) ||
                     CurrentVotingYear < NextVotingYear) {
                     $.alert({
-                        title: '可投票數已用完',
+                        title: '可評量數已用完',
                         icon: 'fa fa-warning',
                         type: 'green',
-                        content: '已沒有多餘票可用，請等下一季再行投票',
+                        content: '已沒有多餘評量可用，請等下一季再行評量',
                     });
                     return;
                 }
