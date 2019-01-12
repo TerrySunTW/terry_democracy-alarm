@@ -82,11 +82,13 @@ namespace Democracy_Alarm.Services
         }
         public String GetCurrentVotingSeason()
         {
+            int YearNumber = SystemService.GetTW_Time().Year;
             String SeasonString = "Q1";
             if ((SystemService.GetTW_Time().Month >= 12) ||
                 (SystemService.GetTW_Time().Month < 3)
                 )
             {
+                YearNumber = YearNumber - 1;
                 SeasonString = "Q4";
             }
             else if ((SystemService.GetTW_Time().Month >= 3) &&
@@ -108,12 +110,12 @@ namespace Democracy_Alarm.Services
                 SeasonString = "Q3";
             }
 
-            return SystemService.GetTW_Time().Year.ToString()+SeasonString;
+            return YearNumber.ToString()+SeasonString;
         }
         public string GetnNextVotingSeason(String LastVotingSeason)
         {
-            String result = "2018Q1";
-            int LastYear = 2018;
+            String result = "2019Q1";
+            int LastYear = 2019;
             int LastSeason = 1;
             GetVotingYearSeasonFromString(LastVotingSeason, out LastYear, out LastSeason);
             LastSeason++;
@@ -131,7 +133,7 @@ namespace Democracy_Alarm.Services
         public void GetVotingYearSeasonFromString(String SourceVotingSeason, out int VotingYear,out int VotingSeason)
         {
             Regex regex = new Regex("([0-9]{0,4})Q([0-4])", RegexOptions.IgnoreCase);
-            VotingYear = 2018;
+            VotingYear = 2019;
             VotingSeason = 1;
             if(!string.IsNullOrEmpty(SourceVotingSeason))
             {

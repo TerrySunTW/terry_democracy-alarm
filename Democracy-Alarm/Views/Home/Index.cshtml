@@ -94,6 +94,16 @@
                 $('a[data-rel^=voting]').on('click', function () {
                     var CityName = this.attributes['data'].value;
                     SelectedIndex = this.attributes['voting_index'].value;
+                    if (CurrentVotingYear < 2019) {
+                        $.alert({
+                            title: '可於2019/3/1後開始進行評量',
+                            icon: 'fa fa-warning',
+                            type: 'green',
+                            content: '',
+                        });
+                        return;
+                    }
+                    
                     $.confirm({
                         title: '選後真正做老闆',
                         content: '' +

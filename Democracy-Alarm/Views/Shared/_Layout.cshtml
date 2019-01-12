@@ -135,7 +135,7 @@
     <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
         <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey">
             <a href="#" onclick="w3_close()" class="w3-hide-large w3-xxlarge w3-padding w3-hover-grey" title="close menu">
-                <i class="fa fa-fast-backward" style="margin-bottom:0px">回到投票頁</i>
+                <i class="fa fa-fast-backward" style="margin-bottom:0px">回到評量頁</i>
             </a>
         </span>
         <div class="w3-container">
@@ -211,7 +211,7 @@
     <script>
         function My_Voting() {
              $.dialog({
-                        title: '我的投票記錄',
+                        title: '我的評量記錄',
                         content: 'url:@Url.Action("GetMyVoting", "Voting", null)?UserID=' + UID,
                         animation: 'scale',
                         columnClass: 'medium',
@@ -222,7 +222,7 @@
         function My_Location() {
             if (UID) {
                 window.democracyalarm_LocationDialog = $.dialog({
-                    title: '我的投票區(點擊變更)',
+                    title: '我的評量區(點擊變更)',
                     content: 'url:@Url.Action("MyLocation", "User", null)?UserID=' + UID,
                     animation: 'scale',
                     columnClass: 'medium',
