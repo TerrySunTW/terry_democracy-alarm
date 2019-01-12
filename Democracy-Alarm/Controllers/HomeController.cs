@@ -2,6 +2,7 @@
 using Democracy_Alarm.Services;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,6 +43,7 @@ namespace Democracy_Alarm.Controllers
             _VotingCityViewModel.Cities = _VotingServices.GetCitys();
             _VotingCityViewModel.MayorMapping = _VotingServices.GetMayorMapping();
             _VotingCityViewModel.CityVotes = _VotingServices.GetCityVotes();
+            _VotingCityViewModel.StartVotingYear = ConfigurationManager.AppSettings["StartYear"];
             //_VotingCityViewModel.ID = UserModel.LogingUserID;
             return View(_VotingCityViewModel);
         }

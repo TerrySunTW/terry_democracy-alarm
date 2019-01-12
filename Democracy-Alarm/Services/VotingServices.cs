@@ -1,6 +1,7 @@
 ﻿using Democracy_Alarm.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -10,6 +11,7 @@ namespace Democracy_Alarm.Services
     public class VotingServices
     {
         MyDB_Entities _MyDB_Entities = new MyDB_Entities();
+        string StartYear= ConfigurationManager.AppSettings["StartYear"];
         public List<CityVoting> GetCityVotes()
         {
             var _result = from Voting in _MyDB_Entities.KeyValue
@@ -114,8 +116,8 @@ namespace Democracy_Alarm.Services
         }
         public string GetnNextVotingSeason(String LastVotingSeason)
         {
-            String result = "2019Q1";
-            int LastYear = 2019;
+            String result = StartYear+"Q1";
+            int LastYear = Convert.ToInt32(StartYear);
             int LastSeason = 1;
             GetVotingYearSeasonFromString(LastVotingSeason, out LastYear, out LastSeason);
             LastSeason++;
@@ -133,7 +135,7 @@ namespace Democracy_Alarm.Services
         public void GetVotingYearSeasonFromString(String SourceVotingSeason, out int VotingYear,out int VotingSeason)
         {
             Regex regex = new Regex("([0-9]{0,4})Q([0-4])", RegexOptions.IgnoreCase);
-            VotingYear = 2019;
+            VotingYear = Convert.ToInt32(StartYear);
             VotingSeason = 1;
             if(!string.IsNullOrEmpty(SourceVotingSeason))
             {

@@ -15,9 +15,9 @@ namespace Democracy_Alarm.Models
         public int CurrentVotingSeason;
         public int NextVotingYear;
         public int NextVotingSeason;
-        
         public string NextFullVotingSeason;
         public string ID;
+        public string StartVotingYear;
     }
     public class CityVoting
     {

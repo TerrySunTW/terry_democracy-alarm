@@ -94,7 +94,7 @@
                 $('a[data-rel^=voting]').on('click', function () {
                     var CityName = this.attributes['data'].value;
                     SelectedIndex = this.attributes['voting_index'].value;
-                    if (CurrentVotingYear < 2019) {
+                    if (CurrentVotingYear < 2019 && '@Model.StartVotingYear' == '2019') {
                         $.alert({
                             title: '可於2019/3/1後開始進行評量',
                             icon: 'fa fa-warning',
@@ -150,9 +150,10 @@
             function SubmitVoting(IsDiscard) {
                 var VotingCity = $("#VotingCity").val();
                 var VotingReason = $("#VotingReason").val();
+                debugger;
                 if (
                     ((CurrentVotingSeason < NextVotingSeason) && (CurrentVotingYear == NextVotingYear)) ||
-                    CurrentVotingYear < NextVotingYear) {
+                    (CurrentVotingYear < NextVotingYear && '@Model.StartVotingYear' == '2019')) {
                     $.alert({
                         title: '可評量數已用完',
                         icon: 'fa fa-warning',
